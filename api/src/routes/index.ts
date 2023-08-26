@@ -7,8 +7,12 @@ export const router = Router();
 
 // Conection - Router-Endpoints
 
+import { userRouter } from './userRoutes';
+
 
 // Endpoints
+
+router.use('/api/user',userRouter)
 
 
 // Rutas no implementadas:
