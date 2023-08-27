@@ -8,9 +8,9 @@ import { userRegister,userLogin } from "../handlers/usersHandlers";
 
 // Middlewares
 
-// 
+import { postValidate } from "../middlewares/user";
 
 // Enrutado
 
-userRouter.post('/register',userRegister);
+userRouter.post('/register',postValidate,userRegister);
 userRouter.post('/login',userLogin)
