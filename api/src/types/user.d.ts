@@ -3,6 +3,7 @@ export type UserType = {
   username: string;
   email: string,
   password: string;
+  token?:string,
 };
 
 export interface UserInterface {
@@ -10,4 +11,5 @@ export interface UserInterface {
   username: string;
   email: string,
   password?: string;
+  token?:string,
 }
