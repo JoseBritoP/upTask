@@ -20,3 +20,8 @@ export type UserLogin = {
   identifier: Identifier
   password: string;
 }
+
+export type ChangePassword = {
+  token:string,
+  password:string
+}

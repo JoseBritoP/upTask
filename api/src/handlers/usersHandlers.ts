@@ -2,7 +2,7 @@ import {Request,Response} from 'express';
 
 // Controllers
 
-import { createUser,loginUserByEmail,loginUserByUsername,loginUser,confirmToken } from '../controllers/users';
+import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToChangePassword,newPassword } from '../controllers/users';
 
 // Handlers
 
@@ -36,6 +36,38 @@ export const userAuthToken = async (req:Request,res:Response) => {
   try {
     const user = await confirmToken(token);
     return res.status(200).json({message:user});
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};
+
+export const forgetPassword = async (req:Request,res:Response) => {
+  // return res.status(200).json({DIY:"Change password"})
+  const {email} = req.body;
+  try {
+    const user = await tokenToChangePassword({email});
+    return res.status(200).json({message:user})
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};
+
+export const checkToken = async (req:Request,res:Response) => {
+  const {token} = req.params;
+  try {
+    const user = await validTokenToChangePassword(token);
+    return res.status(200).json({message:user});
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};
+
+export const changePassword = async (req:Request,res:Response) => {
+  const {token} = req.params;
+  const {password} = req.body;
+  try {
+    const userWithNewPassword = await newPassword({token,password});
+    return res.status(200).json(userWithNewPassword)
   } catch (error:any) {
     return res.status(400).json({error:error.message})
   }
