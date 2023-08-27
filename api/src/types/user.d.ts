@@ -13,3 +13,10 @@ export interface UserInterface {
   password?: string;
   token?:string,
 }
+export type Identifier = {
+  identifier: email | username
+}
+export type UserLogin = {
+  identifier: Identifier
+  password: string;
+}
