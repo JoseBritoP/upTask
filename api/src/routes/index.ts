@@ -12,7 +12,7 @@ import { userRouter } from './userRoutes';
 
 // Endpoints
 
-router.use('/api/user',userRouter)
+router.use('/api/auth',userRouter)
 
 
 // Rutas no implementadas:
