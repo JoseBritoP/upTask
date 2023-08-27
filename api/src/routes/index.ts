@@ -8,12 +8,12 @@ export const router = Router();
 // Conection - Router-Endpoints
 
 import { userRouter } from './userRoutes';
-
+import { proyectRouter } from './proyectRoutes';
 
 // Endpoints
 
 router.use('/api/auth',userRouter)
-
+router.use('/api/proyect',proyectRouter)
 
 // Rutas no implementadas:
 router.use((req: Request, res: Response, next: NextFunction) => {
