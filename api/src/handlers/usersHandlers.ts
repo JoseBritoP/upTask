@@ -72,3 +72,7 @@ export const changePassword = async (req:Request,res:Response) => {
     return res.status(400).json({error:error.message})
   }
 };
+
+export const perfil = async(req:Request,res:Response) => {
+  
+};
