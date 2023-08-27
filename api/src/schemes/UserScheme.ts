@@ -3,8 +3,8 @@ import { UserType } from '../types/user';
 
 const userScheme = z.object({
   username: z.string({
-    required_error: "Email is a required field",
-    invalid_type_error: 'The email must be a string'
+    required_error: "Username is a required field",
+    invalid_type_error: 'The username must be a string'
   }).regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,{
     message: 'Invalid characters in the name',
   }),
