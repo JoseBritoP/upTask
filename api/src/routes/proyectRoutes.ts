@@ -4,16 +4,16 @@ export const proyectRouter = express.Router();
 
 // Handlers:
 
-import { getProyects,getProyect,createProyect,updateProyect,deleteProyect,addCollaborator,removeCollaborator,getTasks } from "../handlers/proyectsHandlers";
+import { getProyects,getProyect,postProyect,updateProyect,deleteProyect,addCollaborator,removeCollaborator,getTasks } from "../handlers/proyectsHandlers";
 
 // Middlewares
 
 import { checkAuth } from "../middlewares/user";
 
-// Enrutado
+// Enrutado + Protección de rutas
 
 proyectRouter.get('/',checkAuth,getProyects);
-proyectRouter.post("/",checkAuth,createProyect);
+proyectRouter.post("/",checkAuth,postProyect);
 
 proyectRouter.get('/:id',checkAuth,getProyect);
 proyectRouter.put("/:id",checkAuth,updateProyect);

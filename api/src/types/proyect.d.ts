@@ -12,3 +12,10 @@ export type ProyectType = {
   creator?:UserRef,
   collaborators: UserRef[]
 }
+
+export type NewProyect = {
+  name: string,
+  description: string,
+  client: string,
+  creatorId:string
+}

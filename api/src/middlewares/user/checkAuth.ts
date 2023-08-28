@@ -20,7 +20,7 @@ export const checkAuth = async (req:RequestUser,res:Response,next:NextFunction) 
       const user = await User.findById(decoded);
       if(!user) throw new Error(`User not found auth`);
       const data:any = {
-        id: user.id,
+        creatorId: user.id,
         username :user.username,
         email: user.email
       }
