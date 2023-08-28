@@ -30,3 +30,6 @@ const proyectSheme = z.object({
 export const validateProyect = (object:ProyectType) => {
   return proyectSheme.safeParseAsync(object)
 };
+export const validatePartialProyect = (object:ProyectType) => {
+  return proyectSheme.partial().safeParseAsync(object)
+};
