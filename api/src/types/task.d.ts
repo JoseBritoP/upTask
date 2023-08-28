@@ -13,3 +13,14 @@ export type TaskType = {
   proyect:any,
   creatorId:any
 }
+
+export type TaskEdit = {
+  id:string,
+  creatorId:any,
+  name: string;
+  description : string ;
+  state:boolean,
+  limitDate:date,
+  priority: Priority,
+  completed:boolean
+}
