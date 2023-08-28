@@ -9,5 +9,7 @@ export type TaskType = {
   name:string,
   description:string,
   limitDate?:string,
-  priority: Priority
+  priority: Priority,
+  proyect:any,
+  creatorId:any
 }
