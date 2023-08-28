@@ -1,7 +1,7 @@
 import { Response } from "express"
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createTask,getTaskById,editTask } from "../controllers/task";
+import { createTask,getTaskById,editTask,deleteTaskById } from "../controllers/task";
 
 export const addTask = async (req:RequestUser,res:Response) => {
   const {creatorId}:any = req.user
@@ -38,7 +38,14 @@ export const updateTask = async (req:RequestUser,res:Response) => {
 };
 
 export const deleteTask = async (req:RequestUser,res:Response) => {
-  return res.status(200).json({DIY:'delete task'})
+  const {id} = req.params;
+  const {creatorId}:any = req.user
+  try {
+    const deletedTask = await deleteTaskById(id,creatorId);
+    return res.status(200).json(deletedTask)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 };
 
 export const updateState = async (req:RequestUser,res:Response) => {
