@@ -17,7 +17,7 @@ proyectRouter.post("/",checkAuth,postProyect);
 // Token user
 // Proyect id
 proyectRouter.get('/:id',checkAuth,getProyect);
-proyectRouter.put("/:id",checkAuth,updateProyect);
+proyectRouter.patch("/:id",checkAuth,updateProyect);
 proyectRouter.delete("/:id",checkAuth,deleteProyect);
 
 proyectRouter.get("/task/:id",checkAuth,getTasks);

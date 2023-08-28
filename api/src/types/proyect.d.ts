@@ -19,3 +19,11 @@ export type NewProyect = {
   client: string,
   creatorId:string
 }
+
+export type UpdateProyect = {
+  name?: string,
+  description?: string,
+  limitDate?:date,
+  collaborators?: UserRef[]
+  client?: string,
+}
