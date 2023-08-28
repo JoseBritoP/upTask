@@ -9,11 +9,13 @@ export const router = Router();
 
 import { userRouter } from './userRoutes';
 import { proyectRouter } from './proyectRoutes';
+import { taskRouter } from './taskRoutes';
 
 // Endpoints
 
-router.use('/api/auth',userRouter)
-router.use('/api/proyect',proyectRouter)
+router.use('/api/auth',userRouter);
+router.use('/api/proyect',proyectRouter);
+router.use('/api/task',taskRouter);
 
 // Rutas no implementadas:
 router.use((req: Request, res: Response, next: NextFunction) => {
