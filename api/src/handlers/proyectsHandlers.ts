@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createProyect,getAllProyects } from "../controllers/proyects";
+import { createProyect,getAllProyects,getProyectById } from "../controllers/proyects";
 
 export const getProyects = async(req:RequestUser,res:Response) => {
   const {creatorId}:any = req.user
@@ -14,7 +14,18 @@ export const getProyects = async(req:RequestUser,res:Response) => {
 };
 
 export const getProyect = async(req:RequestUser,res:Response) => {
-  return res.status(200).json({DIY:"Proyect with task"})
+  const {id} = req.params;
+  const { creatorId}:any = req.user;
+  try {
+    const proyect = await getProyectById(id,creatorId);
+    return res.status(200).json(proyect)
+  } catch (error:any) {
+    if(error.message === "Unauthorized"){
+      return res.status(401).json({error:error.message})
+    }
+    return res.status(404).json({error:error.message})
+  }
+  // return res.status(200).json({DIY:"Proyect with task"})
 };
 
 export const postProyect = async(req:RequestUser,res:Response) => {

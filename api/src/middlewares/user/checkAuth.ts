@@ -15,9 +15,9 @@ export const checkAuth = async (req:RequestUser,res:Response,next:NextFunction) 
     //  console.log(token)
     try{
       const decoded:any = verify(token,JWT_SECRET);
-      // console.log(decoded)
+      console.log(decoded.id)
       if(!decoded) throw new Error (`Token invalid`);
-      const user = await User.findById(decoded);
+      const user = await User.findById(decoded.id);
       if(!user) throw new Error(`User not found auth`);
       const data:any = {
         creatorId: user.id,

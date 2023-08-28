@@ -14,7 +14,8 @@ import { checkAuth } from "../middlewares/user";
 
 proyectRouter.get('/',checkAuth,getProyects);
 proyectRouter.post("/",checkAuth,postProyect);
-
+// Token user
+// Proyect id
 proyectRouter.get('/:id',checkAuth,getProyect);
 proyectRouter.put("/:id",checkAuth,updateProyect);
 proyectRouter.delete("/:id",checkAuth,deleteProyect);
