@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createProyect,getAllProyects,getProyectById,editProyect,deleteProyectById } from "../controllers/proyects";
+import { createProyect,getAllProyects,getProyectById,editProyect,deleteProyectById,getAllProyectTask } from "../controllers/proyects";
 
 export const getProyects = async(req:RequestUser,res:Response) => {
   const {creatorId}:any = req.user
@@ -75,6 +75,14 @@ export const removeCollaborator = async (req:RequestUser,res:Response) => {
   return res.status(200).json({DIY:"Remove a collaborator of Proyect"})
 };
 
-export const getTasks = async (req:RequestUser,res:Response) => {
+export const getProyectTasks = async (req:RequestUser,res:Response) => {
+  const {id} = req.params;
+  const { creatorId }:any = req.user;
+  try {
+    const proyectTask = await getAllProyectTask(id,creatorId);
+    return  res.status(200).json(proyectTask)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
   return res.status(200).json({DIY:"Get tasks of Proyect"})
 }

@@ -4,7 +4,7 @@ export const proyectRouter = express.Router();
 
 // Handlers:
 
-import { getProyects,getProyect,postProyect,updateProyect,deleteProyect,addCollaborator,removeCollaborator,getTasks } from "../handlers/proyectsHandlers";
+import { getProyects,getProyect,postProyect,updateProyect,deleteProyect,addCollaborator,removeCollaborator,getProyectTasks } from "../handlers/proyectsHandlers";
 
 // Middlewares
 
@@ -20,6 +20,6 @@ proyectRouter.get('/:id',checkAuth,getProyect);
 proyectRouter.patch("/:id",checkAuth,updateProyect);
 proyectRouter.delete("/:id",checkAuth,deleteProyect);
 
-proyectRouter.get("/task/:id",checkAuth,getTasks);
+proyectRouter.get("/task/:id",checkAuth,getProyectTasks);
 proyectRouter.post("/add-collaborator/:id",checkAuth,addCollaborator);
 proyectRouter.post("/remove-collaborator/:id",checkAuth,removeCollaborator);
