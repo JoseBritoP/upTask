@@ -1,7 +1,7 @@
 import { Response } from "express"
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createTask } from "../controllers/task";
+import { createTask,getTaskById } from "../controllers/task";
 
 export const addTask = async (req:RequestUser,res:Response) => {
   const {creatorId}:any = req.user
@@ -12,11 +12,17 @@ export const addTask = async (req:RequestUser,res:Response) => {
   } catch (error:any) {
     return res.status(400).json({error:error.message})
   }
-  return res.status(200).json({DIY:'add task'})
 };
 
 export const getTask = async (req:RequestUser,res:Response) => {
-  return res.status(200).json({DIY:'task id'})
+  const {id} = req.params;
+  const {creatorId}:any = req.user
+  try {
+    const task = await getTaskById(id,creatorId);
+    return res.status(200).json(task)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 };
 
 export const updateTask = async (req:RequestUser,res:Response) => {
