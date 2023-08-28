@@ -8,17 +8,17 @@ import { getProyects,getProyect,createProyect,updateProyect,deleteProyect,addCol
 
 // Middlewares
 
-// 
+import { checkAuth } from "../middlewares/user";
 
 // Enrutado
 
-proyectRouter.get('/',getProyects);
-proyectRouter.post("/",createProyect);
+proyectRouter.get('/',checkAuth,getProyects);
+proyectRouter.post("/",checkAuth,createProyect);
 
-proyectRouter.get('/:id',getProyect);
-proyectRouter.put("/:id",updateProyect);
-proyectRouter.delete("/:id",deleteProyect);
+proyectRouter.get('/:id',checkAuth,getProyect);
+proyectRouter.put("/:id",checkAuth,updateProyect);
+proyectRouter.delete("/:id",checkAuth,deleteProyect);
 
-proyectRouter.get("/task/:id",getTasks);
-proyectRouter.post("/add-collaborator/:id",addCollaborator);
-proyectRouter.post("/remove-collaborator/:id",removeCollaborator);
+proyectRouter.get("/task/:id",checkAuth,getTasks);
+proyectRouter.post("/add-collaborator/:id",checkAuth,addCollaborator);
+proyectRouter.post("/remove-collaborator/:id",checkAuth,removeCollaborator);

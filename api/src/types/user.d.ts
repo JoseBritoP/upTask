@@ -6,6 +6,12 @@ export type UserType = {
   token?:string,
 };
 
+export type UserAuth = {
+  id:string,
+  username:string,
+  email:string
+}
+
 export interface UserInterface {
   id?: string;
   username: string;

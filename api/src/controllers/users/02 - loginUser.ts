@@ -1,25 +1,8 @@
 import User from "../../models/User";
 import { UserLogin, UserType } from "../../types/user";
 import { passwordCompare } from "../../utils/bycript.handler";
+import { generateToken } from "../../utils/jwt.handler";
 
-export const loginUserByEmail = async ({email,password}:UserType) => {
-  const user = await User.findOne({email});
-  if(!user) throw new Error(`User not found`);
-  const passwordHash = user.password;
-  const isPasswordCorrect = await passwordCompare (password,passwordHash);
-  if(!isPasswordCorrect) throw new Error (`Password incorrect`);
-  return user;
-};
-
-export const loginUserByUsername = async ({username,password}:UserType) => {
-  const user = await User.findOne({username});
-  if(!user) throw new Error(`User not found`);
-  const passwordHash = user.password;
-  const isPasswordCorrect = await passwordCompare (password,passwordHash);
-  if(!isPasswordCorrect) throw new Error (`Password incorrect`);
-
-  return user;
-};
 
 export const loginUser = async ({identifier,password}:UserLogin) => {
   const user = await User.findOne({
@@ -28,6 +11,9 @@ export const loginUser = async ({identifier,password}:UserLogin) => {
   if(!user) throw new Error(`User not found`);
   const passwordHash = user.password;
   const isPasswordCorrect = await passwordCompare (password,passwordHash);
+  const token = await generateToken(user.id);
   if(!isPasswordCorrect) throw new Error (`Password incorrect`);
+  user.token = token;
+  await user.save();
   return user;
 };
