@@ -1,10 +1,16 @@
 import { Response } from "express";
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createProyect } from "../controllers/proyects";
+import { createProyect,getAllProyects } from "../controllers/proyects";
 
 export const getProyects = async(req:RequestUser,res:Response) => {
-  return res.status(200).json({DIY:"Proyects"})
+  const {creatorId}:any = req.user
+  try {
+    const proyects = await getAllProyects({creatorId});
+    return res.status(200).json(proyects)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 };
 
 export const getProyect = async(req:RequestUser,res:Response) => {
