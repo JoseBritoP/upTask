@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { RequestUser } from "../middlewares/user/checkAuth";
 
-import { createProyect,getAllProyects,getProyectById,editProyect } from "../controllers/proyects";
+import { createProyect,getAllProyects,getProyectById,editProyect,deleteProyectById } from "../controllers/proyects";
 
 export const getProyects = async(req:RequestUser,res:Response) => {
   const {creatorId}:any = req.user
@@ -50,15 +50,21 @@ export const updateProyect = async(req:RequestUser,res:Response) => {
     const updatedProyect = await editProyect(id,creatorId,{name,description,limitDate,client,collaborators});
     return res.status(200).json(updatedProyect)
   } catch (error:any) {
-    if(error.message === "Unauthorized"){
-      return res.status(401).json({error:error.message})
-    }
+    if(error.message === "Unauthorized") return res.status(401).json({error:error.message})
     return res.status(404).json({error:error.message})
   }
 };
 
 export const deleteProyect = async(req:RequestUser,res:Response) => {
-  return res.status(200).json({DIY:"Edit Proyect"})
+  const {id} = req.params;
+  const { creatorId }:any = req.user;
+  try {
+    const deletedProyect = await deleteProyectById(id,creatorId);
+    return res.status(200).json(deletedProyect);
+  } catch (error:any) {
+    if(error.message === "Unauthorized") return res.status(401).json({error:error.message})
+    return res.status(404).json({error:error.message})
+  }
 };
 
 export const addCollaborator = async(req:RequestUser,res:Response) => {

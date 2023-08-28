@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { boolean } from "zod";
 
 const proyectSchema =  new mongoose.Schema({
   name:{
@@ -23,6 +24,10 @@ const proyectSchema =  new mongoose.Schema({
   creator:{
     type:mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+  deleted:{
+    type: Boolean,
+    default : false
   },
   collaborators:[
     {
