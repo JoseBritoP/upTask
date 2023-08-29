@@ -4,7 +4,7 @@ export const userRouter = express.Router();
 
 // Handlers:
 
-import { userRegister,userLogin,userAuthToken,forgetPassword,checkToken,changePassword,perfil } from "../handlers/usersHandlers";
+import { getUsers,userRegister,userLogin,userAuthToken,forgetPassword,checkToken,changePassword,perfil } from "../handlers/usersHandlers";
 
 // Middlewares
 
@@ -12,6 +12,7 @@ import { checkAuth, postValidate } from "../middlewares/user";
 
 // Enrutado
 
+userRouter.get('/',getUsers)
 userRouter.post('/register',postValidate,userRegister);
 userRouter.get('/:token',userAuthToken);
 userRouter.post('/login',userLogin);

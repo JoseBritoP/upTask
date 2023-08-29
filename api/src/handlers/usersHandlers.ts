@@ -2,11 +2,17 @@ import {Request,Response} from 'express';
 
 // Controllers
 
-import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToChangePassword,newPassword } from '../controllers/users';
+import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToChangePassword,newPassword, getAllUsers } from '../controllers/users';
 
 // Handlers
 
 export const getUsers = async (req:Request,res:Response) => {
+  try {
+    const users = await getAllUsers();
+    return res.status(200).json(users)
+  } catch (error:any) {
+    return res.status(404).json({error: error.message})
+  }
   return res.status(200).json({DIY:`All users`})
 };
 

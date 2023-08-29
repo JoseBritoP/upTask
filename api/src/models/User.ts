@@ -28,7 +28,17 @@ const userSchema = new mongoose.Schema({
   confirmed:{
     type:Boolean,
     default:false
-  }
+  },
+  deleted:{
+    type:Boolean,
+    default:false
+  },
+  proyects:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref: 'Proyect',
+    }
+  ]
 },{
   timestamps:true
 });
