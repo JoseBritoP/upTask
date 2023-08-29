@@ -9,15 +9,15 @@ import { getProyects,getProyect,postProyect,updateProyect,deleteProyect,addColla
 // Middlewares
 
 import { checkAuth } from "../middlewares/user";
-
+import {postValidate,patchValidate} from '../middlewares/proyect'
 // Enrutado + Protección de rutas
 
 proyectRouter.get('/',checkAuth,getProyects);
-proyectRouter.post("/",checkAuth,postProyect);
+proyectRouter.post("/",checkAuth,postValidate,postProyect);
 // Token user
 // Proyect id
 proyectRouter.get('/:id',checkAuth,getProyect);
-proyectRouter.patch("/:id",checkAuth,updateProyect);
+proyectRouter.patch("/:id",checkAuth,patchValidate,updateProyect);
 proyectRouter.delete("/:id",checkAuth,deleteProyect);
 
 proyectRouter.get("/task/:id",checkAuth,getProyectTasks);
