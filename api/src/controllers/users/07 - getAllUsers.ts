@@ -8,7 +8,12 @@ export const getAllUsers = async () => {
   .populate({
     path: "proyects",
     match: { deleted: false },
-    select: "_id name description limitDate client collaborators tasks creator"
+    select: "_id name description limitDate client collaborators tasks creator",
+    populate: {
+      path: "tasks",
+      match: { deleted: false },
+      select: "_id name description priority" 
+    }
   });
   if(!users || users.length === 0) throw new Error (`User's not found`)
   return users

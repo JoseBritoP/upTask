@@ -11,5 +11,8 @@ export const createTask = async({name,description,priority,proyect,creatorId}:Ta
   if(proyectBDD.creator?.toString() !== creatorId.toString()) throw new Error(`Unauthorized to add tasks`);
 
   const newTask = await Task.create({name,description,priority,proyect});
+
+  proyectBDD.tasks.push(newTask._id);
+  await proyectBDD.save();
   return newTask;
 };
