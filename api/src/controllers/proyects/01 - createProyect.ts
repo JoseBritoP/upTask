@@ -13,5 +13,14 @@ export const createProyect = async ({name,description,client,creatorId}:NewProye
   const savedProyect = await newProyect.save();
   user.proyects.push(savedProyect._id);
   await user.save();
-  return savedProyect
+  return {
+    id: savedProyect?._id,
+    name: savedProyect?.name,
+    description: savedProyect?.description,
+    limitDate: savedProyect?.limitDate,
+    client: savedProyect?.client,
+    collaborators: savedProyect?.collaborators.length === 0 ? 'No collaborators yet' : savedProyect.collaborators,
+    tasks: savedProyect?.tasks.length === 0 ? 'No task yet' : savedProyect?.tasks,
+    creator: savedProyect?.creator
+  }
 };
