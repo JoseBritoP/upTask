@@ -14,5 +14,13 @@ export const createTask = async({name,description,priority,proyect,creatorId}:Ta
 
   proyectBDD.tasks.push(newTask._id);
   await proyectBDD.save();
-  return newTask;
+  return {
+    id: newTask._id,
+    name:newTask.name,
+    description: newTask.description,
+    state: newTask.state,
+    limitDate: newTask.limitDate,
+    priority: newTask.priority,
+    proyect: newTask.proyect
+  }
 };

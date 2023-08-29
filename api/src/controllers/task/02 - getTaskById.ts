@@ -5,9 +5,15 @@ export const getTaskById = async (id:string,creatorId:any) => {
   const task = await Task.findOne({
     _id:id,
     deleted:false
-  }).populate({
+  }).select("-__v -deleted")
+  .populate({
     path:'proyect',
-    select:["_id","name","description","client","creator"]
+    match:{deleted:false},
+    select:["_id","name","description","client","creator"],
+    populate:{
+      path:"creator",
+      select: "username email"
+    }
   });
 
   if(!task) throw new Error(`Task not found`);
