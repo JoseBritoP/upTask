@@ -13,7 +13,7 @@ export type UserAuth = {
 }
 
 export interface UserInterface {
-  id?: string;
+  id: ObjectId;
   username: string;
   email: string,
   password?: string;

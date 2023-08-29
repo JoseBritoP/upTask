@@ -16,4 +16,10 @@ export const loginUser = async ({identifier,password}:UserLogin) => {
   user.token = token;
   await user.save();
   return user;
+  return {
+    id: user?._id,
+    username: user?.username,
+    email: user?.email,
+    token: user?.token
+  }
 };

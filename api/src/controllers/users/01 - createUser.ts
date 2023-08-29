@@ -20,8 +20,14 @@ export const createUser = async ({username,email,password}:UserType):Promise<Use
   
   const passwordHash = await bycrypt(password)
   const newUser = new User({username,email,password:passwordHash})
-  const token = await generateToken(newUser.id);
-  newUser.token = token;
+  const tokenValid = await generateToken(newUser.id);
+  newUser.token = tokenValid;
   const savedUser = await newUser.save();
-  return savedUser;
+  // return savedUser;
+  return {
+    id: savedUser._id,
+    username: savedUser.username,
+    email: savedUser.email,
+    token: savedUser.token
+  }
 };

@@ -1,6 +1,4 @@
 import User from "../../models/User";
-import Proyect from "../../models/Proyect";
-import Task from "../../models/Task";
 
 export const getAllUsers = async () => {
   const users = await User.find({deleted:false,confirmed:true})
@@ -8,7 +6,7 @@ export const getAllUsers = async () => {
   .populate({
     path: "proyects",
     match: { deleted: false },
-    select: "_id name description limitDate client collaborators tasks creator",
+    select: "_id name description limitDate client collaborators tasks",
     populate: {
       path: "tasks",
       match: { deleted: false },
