@@ -17,7 +17,7 @@ export const loginUser = async ({identifier,password}:UserLogin) => {
     await user.save();
   }
   if(!isPasswordCorrect) throw new Error (`Password incorrect`);
-  return user;
+  // return user;
   return {
     id: user?._id,
     username: user?.username,
