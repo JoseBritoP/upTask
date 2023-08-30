@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <>
@@ -22,6 +22,10 @@ const Login = () => {
         </div>
         <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5" />
       </form>
+      <nav className="lg:flex lg:justify-between">
+        <Link to={"/register"} className='block text-center my-5 text-slate-500 uppercase text-sm font-bold'>¿No tienes una cuenta? Regístrate</Link>
+        <Link to={"/forget-password"} className='block text-center my-5 text-slate-500 uppercase text-sm font-bold'>¿Olvidaste tu contraseña?</Link>
+      </nav>
     </>
   )
 }
