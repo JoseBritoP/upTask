@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Formik } from 'formik'
+import { Formik, Form, Field,ErrorMessage } from 'formik'
 
 const Register = () => {
   const [exit,setExit] = useState(false)
@@ -27,7 +27,7 @@ const Register = () => {
             console.log('Por favor escribe un nombre')
             errors.username = 'Por favor ingrese un apodo'
           } else if(!/^[a-zA-ZÀ-ÿ\s]{5,20}$/.test(values.username)){
-            errors.username='Su apodo solo puede contener letras y tener más de 3 caracteres'
+            errors.username='Su apodo solo puede contener letras y tener más de 4 caracteres'
           }
           if(!values.email){
             console.log('Por favor ingrese su correo')
@@ -51,64 +51,112 @@ const Register = () => {
         }}
         onSubmit={(values,{resetForm})=>{
           console.log(values)
+          console.log('Enviando formulario...')
           setExit(true)
           resetForm();
-          console.log('Enviando formulario...')
         }}
       >
-        {({values,handleSubmit,handleChange,handleBlur,errors,touched})=>(
-          <form action="" onSubmit={handleSubmit} className="my-10 bg-white shadow rounded-lg px-10 py-5">
+        {({errors})=>(
+          <Form action="" className="my-10 bg-white shadow rounded-lg px-10 py-5">
             {/* Username */}
             <div className="my-5">
               <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Username</label>
-              <input 
+              <Field 
                 type="text" name="username" id="username" 
-                value={values.username}
                 placeholder="Username" className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
-                onChange={handleChange}
-                onBlur={handleBlur}
               />
-              {touched.username && errors.username && <p className='text-red-500 font-semibold'>{errors.username}</p>}
+              <ErrorMessage name="username" component = {()=>(
+                <p className='text-red-500 font-semibold'>{errors.username}</p>
+              )}/>
             </div>
             {/* Email */}
             <div className="my-5">
               <label htmlFor="email" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Email</label>
-              <input 
+              <Field 
                 type="email" name="email" id="email" placeholder="Email de registro"
-                value={values.email}
                 className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
-                onChange={handleChange}
-                onBlur={handleBlur}
               />
-              {touched.email && errors.email && <p className='text-red-500 font-semibold'>{errors.email}</p>}
+                <ErrorMessage name="email" component = {()=>(
+                <p className='text-red-500 font-semibold'>{errors.email}</p>
+              )}/>
             </div>
             {/* Password */}
             <div className="my-5">
               <label htmlFor="password" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Password</label>
-              <input 
+              <Field 
                 type="password" name="password" id="password" placeholder="Ingresa tu contraseña password" 
-                value={values.password}
                 className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
-                onChange={handleChange}
-                onBlur={handleBlur}
               />
-              {touched.password && errors.password && <p className='text-red-500 font-semibold'>{errors.password}</p>}
+              <ErrorMessage name="password" component = {()=>(
+                <p className='text-red-500 font-semibold'>{errors.password}</p>
+              )}/>
             </div>
             {/* Repeat Password */}
             <div className="my-5">
               <label htmlFor="repeatPassword" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Repetir password</label>
-              <input 
+              <Field 
                 type="password" name="repeatPassword" id="repeatPassword" placeholder="Repite tu contraseña" 
-                value={values.repeatPassword}
                 className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
-                onChange={handleChange}
-                onBlur={handleBlur}
               />
-              {touched.repeatPassword && errors.repeatPassword && <p className='text-red-500 font-semibold'>{errors.repeatPassword}</p>}
+              <ErrorMessage name="repeatPassword" component = {()=>(
+                <p className='text-red-500 font-semibold'>{errors.repeatPassword}</p>
+              )}/>
             </div>
             <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5" />
             {exit && <p className='text-emerald-500 font-semibold'>Formulario enviado con éxito</p>}
-          </form>
+          </Form>
+          // <form action="" onSubmit={handleSubmit} className="my-10 bg-white shadow rounded-lg px-10 py-5">
+          //   {/* Username */}
+          //   <div className="my-5">
+          //     <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Username</label>
+          //     <input 
+          //       type="text" name="username" id="username" 
+          //       value={values.username}
+          //       placeholder="Username" className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
+          //       onChange={handleChange}
+          //       onBlur={handleBlur}
+          //     />
+          //     {touched.username && errors.username && <p className='text-red-500 font-semibold'>{errors.username}</p>}
+          //   </div>
+          //   {/* Email */}
+          //   <div className="my-5">
+          //     <label htmlFor="email" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Email</label>
+          //     <input 
+          //       type="email" name="email" id="email" placeholder="Email de registro"
+          //       value={values.email}
+          //       className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
+          //       onChange={handleChange}
+          //       onBlur={handleBlur}
+          //     />
+          //     {touched.email && errors.email && <p className='text-red-500 font-semibold'>{errors.email}</p>}
+          //   </div>
+          //   {/* Password */}
+          //   <div className="my-5">
+          //     <label htmlFor="password" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Password</label>
+          //     <input 
+          //       type="password" name="password" id="password" placeholder="Ingresa tu contraseña password" 
+          //       value={values.password}
+          //       className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
+          //       onChange={handleChange}
+          //       onBlur={handleBlur}
+          //     />
+          //     {touched.password && errors.password && <p className='text-red-500 font-semibold'>{errors.password}</p>}
+          //   </div>
+          //   {/* Repeat Password */}
+          //   <div className="my-5">
+          //     <label htmlFor="repeatPassword" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer">Repetir password</label>
+          //     <input 
+          //       type="password" name="repeatPassword" id="repeatPassword" placeholder="Repite tu contraseña" 
+          //       value={values.repeatPassword}
+          //       className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black" 
+          //       onChange={handleChange}
+          //       onBlur={handleBlur}
+          //     />
+          //     {touched.repeatPassword && errors.repeatPassword && <p className='text-red-500 font-semibold'>{errors.repeatPassword}</p>}
+          //   </div>
+          //   <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5" />
+          //   {exit && <p className='text-emerald-500 font-semibold'>Formulario enviado con éxito</p>}
+          // </form>
         )}
       </Formik>
       <nav className="lg:flex lg:justify-between">
