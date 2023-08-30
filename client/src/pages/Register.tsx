@@ -56,7 +56,7 @@ const Register = () => {
           console.log('Enviando formulario...')
         }}
       >
-        {({values,handleSubmit,handleChange,handleBlur,errors})=>(
+        {({values,handleSubmit,handleChange,handleBlur,errors,touched})=>(
           <form action="" onSubmit={handleSubmit} className="my-10 bg-white shadow rounded-lg px-10 py-5">
             {/* Username */}
             <div className="my-5">
@@ -68,7 +68,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.username && <p className='text-red-500 font-semibold'>{errors.username}</p>}
+              {touched.username && errors.username && <p className='text-red-500 font-semibold'>{errors.username}</p>}
             </div>
             {/* Email */}
             <div className="my-5">
@@ -80,7 +80,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && <p className='text-red-500 font-semibold'>{errors.email}</p>}
+              {touched.email && errors.email && <p className='text-red-500 font-semibold'>{errors.email}</p>}
             </div>
             {/* Password */}
             <div className="my-5">
@@ -92,7 +92,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.password && <p className='text-red-500 font-semibold'>{errors.password}</p>}
+              {touched.password && errors.password && <p className='text-red-500 font-semibold'>{errors.password}</p>}
             </div>
             {/* Repeat Password */}
             <div className="my-5">
@@ -104,7 +104,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.repeatPassword && <p className='text-red-500 font-semibold'>{errors.repeatPassword}</p>}
+              {touched.repeatPassword && errors.repeatPassword && <p className='text-red-500 font-semibold'>{errors.repeatPassword}</p>}
             </div>
             <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5" />
             {exit && <p className='text-emerald-500 font-semibold'>Formulario enviado con éxito</p>}
