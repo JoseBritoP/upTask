@@ -11,10 +11,12 @@ export const loginUser = async ({identifier,password}:UserLogin) => {
   if(!user) throw new Error(`User not found`);
   const passwordHash = user.password;
   const isPasswordCorrect = await passwordCompare (password,passwordHash);
-  const token = await generateToken(user.id);
+  if(!user.token || user.token === ''){
+    const token = await generateToken(user.id);
+    user.token = token;
+    await user.save();
+  }
   if(!isPasswordCorrect) throw new Error (`Password incorrect`);
-  user.token = token;
-  await user.save();
   return user;
   return {
     id: user?._id,
