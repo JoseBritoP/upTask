@@ -1,10 +1,10 @@
 import User from "../../models/User";
-import { UserLogin, UserType } from "../../types/user";
+import { UserLogin, UserLogged } from "../../types/user";
 import { passwordCompare } from "../../utils/bycript.handler";
 import { generateToken } from "../../utils/jwt.handler";
 
 
-export const loginUser = async ({identifier,password}:UserLogin) => {
+export const loginUser = async ({identifier,password}:UserLogin):Promise<UserLogged> => {
   const user = await User.findOne({
     $or:[{email:identifier},{username:identifier}]
   });

@@ -27,6 +27,13 @@ export type UserLogin = {
   password: string;
 }
 
+export type UserLogged = {
+  id:ObjectId
+  username:string,
+  email:string,
+  token:string
+}
+
 export type ChangePassword = {
   token:string,
   password:string
