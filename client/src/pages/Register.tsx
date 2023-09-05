@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field,ErrorMessage } from 'formik'
+import { validateFormRegister } from '../helpers/validate'
 
 const Register = () => {
   const [exit,setExit] = useState(false)
@@ -16,39 +17,40 @@ const Register = () => {
           password:'',
           repeatPassword:''
         }}
-        validate={(values)=>{
-          const errors = {
-            username: '',
-            email: '',
-            password: '',
-            repeatPassword:''
-          }
-          if(!values.username){
-            console.log('Por favor escribe un nombre')
-            errors.username = 'Por favor ingrese un apodo'
-          } else if(!/^[a-zA-ZÀ-ÿ\s]{5,20}$/.test(values.username)){
-            errors.username='Su apodo solo puede contener letras y tener más de 4 caracteres'
-          }
-          if(!values.email){
-            console.log('Por favor ingrese su correo')
-            errors.email = 'Por favor ingrese su correo'
-          } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)){
-            errors.email= "El formato del correo no es correcto"
-          }
-          if(!values.password){
-            console.log("Porfavor ingresa una contraseña")
-            errors.password= "Porfavor ingresa una contraseña"
-          }
-          if(!values.repeatPassword){
-            console.log("Porfavor repita su contraseña")
-            errors.repeatPassword="Porfavor repita su contraseña"
-          }
-          if(values.repeatPassword !== values.password){
-            console.log('Las contraseñas no coinciden')
-            errors.repeatPassword='Las contraseñas no coinciden'
-          }
-          return errors
-        }}
+        // validate={(values)=>{
+        //   const errors = {
+        //     username: '',
+        //     email: '',
+        //     password: '',
+        //     repeatPassword:''
+        //   }
+        //   if(!values.username){
+        //     console.log('Por favor escribe un nombre')
+        //     errors.username = 'Por favor ingrese un apodo'
+        //   } else if(!/^[a-zA-ZÀ-ÿ\s]{5,20}$/.test(values.username)){
+        //     errors.username='Su apodo solo puede contener letras y tener más de 4 caracteres'
+        //   }
+        //   if(!values.email){
+        //     console.log('Por favor ingrese su correo')
+        //     errors.email = 'Por favor ingrese su correo'
+        //   } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)){
+        //     errors.email= "El formato del correo no es correcto"
+        //   }
+        //   if(!values.password){
+        //     console.log("Porfavor ingresa una contraseña")
+        //     errors.password= "Porfavor ingresa una contraseña"
+        //   }
+        //   if(!values.repeatPassword){
+        //     console.log("Porfavor repita su contraseña")
+        //     errors.repeatPassword="Porfavor repita su contraseña"
+        //   }
+        //   if(values.repeatPassword !== values.password){
+        //     console.log('Las contraseñas no coinciden')
+        //     errors.repeatPassword='Las contraseñas no coinciden'
+        //   }
+        //   return errors
+        // }}
+        validate={validateFormRegister}
         onSubmit={(values,{resetForm})=>{
           console.log(values)
           console.log('Enviando formulario...')

@@ -22,7 +22,29 @@ export const validatePassword = (password:string,errors:ErrorValidate) => {
   return errors['password']
 };
 
+export const validateRepeatPassword = (repeatPassword:string,errors:ErrorValidate) => {
+  const regex = /^(?=.*[A-Z])(?=.*\d).+/
+  if(!repeatPassword || repeatPassword.trim() === '') errors.repeatPassword = 'The password is required'
+  if(!regex.test(repeatPassword)) errors.repeatPassword = 'The password must contain at least one uppercase letter and at least one number.'
+  return errors['repeatPassword']
+};
+
+
+
 export const validateForm = ({username,email,password}:User) => {
+  const errors:ErrorValidate = {
+    username:'',
+    email:'',
+    password:'',
+    repeatPassword:''
+  }
+  username && validateUsername(username,errors);
+  email && validateEmail(email,errors);
+  password && validatePassword(password,errors);
+  return errors
+};
+
+export const validateFormRegister = ({username,email,password,repeatPassword}:User) => {
   const errors:ErrorValidate = {
     username:'',
     email:'',
@@ -31,5 +53,9 @@ export const validateForm = ({username,email,password}:User) => {
   username && validateUsername(username,errors);
   email && validateEmail(email,errors);
   password && validatePassword(password,errors);
+  repeatPassword && validateRepeatPassword(repeatPassword,errors);
+  if(repeatPassword != password){
+    errors.repeatPassword = 'Las contraseñas no coinciden'
+  }
   return errors
-};
+}
