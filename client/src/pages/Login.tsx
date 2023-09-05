@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Formik,Form,Field,ErrorMessage } from 'formik'
+import { validateForm } from '../helpers/validate'
 const Login = () => {
 
   const [message,setMessage] = useState(false)
@@ -9,35 +10,10 @@ const Login = () => {
       <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Inicia sesión {<br></br>} administra tus <span className="text-slate-700">proyectos</span>
       </h1>
       <Formik
-        initialValues={{
-          username: '',
-          email: '',
-          password:''
-        }}
+        initialValues={{ username: '', email: '', password:'' }}
 
-        validate={({username,email,password})=>{
-          const errors = {
-            username: '',
-            email: '',
-            password:''
-          }
-          if(!username || !email){
-            errors.username = 'Username or email are required for login'
-            errors.email = 'Username or email are required for login'
-          } else if(username || email){
-            if(username && !/^[a-zA-ZÀ-ÿ\s]{5,20}$/.test(username)){
-              errors.username = 'The username only have characters'
-            }
-            if(email && !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)){
-              errors.email= "Invalid Email"
-            }
-          }
-          if(!password){
-            errors.password = 'The password is required'
-          }
-          return errors;
-        }}
-
+        validate={validateForm}
+        validateOnBlur={true}
         onSubmit={(values,{resetForm})=>{
           console.log(values)
           console.log('Enviando formulario...')
@@ -80,7 +56,7 @@ const Login = () => {
                 <p className='text-red-500 font-semibold'>{errors.password}</p>
               )}/>
             </div>
-            <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5" />
+            <input type="submit" value="Iniciar sesión" className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer transition-colors 300 ease-in mb-5 disabled:bg-sky-950" />
             {message && <p className='text-emerald-500 font-semibold'>Formulario enviado con éxito</p>}
           </Form>
         )}
