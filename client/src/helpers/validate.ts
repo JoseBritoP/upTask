@@ -1,4 +1,4 @@
-import { User } from "../interfaces/User";
+import { User,NewPassword } from "../interfaces/User";
 import { ErrorValidate } from "../interfaces/Error";
 
 export const validateUsername = (username:string,errors:ErrorValidate) => {
@@ -58,4 +58,14 @@ export const validateFormRegister = ({username,email,password,repeatPassword}:Us
     errors.repeatPassword = 'Las contraseñas no coinciden'
   }
   return errors
+}
+
+export const validateFormNewPassword = ({password,repeatPassword}:NewPassword) =>{
+  const errors:ErrorValidate = {
+    password:'',
+    repeatPassword:''
+  }
+  validatePassword(password,errors)
+  validateRepeatPassword(repeatPassword,errors)
+  return errors;
 }

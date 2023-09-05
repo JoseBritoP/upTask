@@ -4,3 +4,8 @@ export interface User {
   password:string
   repeatPassword?:string
 }
+
+export interface NewPassword {
+  password:string
+  repeatPassword:string
+}
