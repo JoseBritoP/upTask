@@ -50,13 +50,13 @@ const Register = () => {
         //   }
         //   return errors
         // }}
-        validate={validateFormRegister}
         onSubmit={(values,{resetForm})=>{
           console.log(values)
           console.log('Enviando formulario...')
           setExit(true)
           resetForm();
         }}
+        validate={validateFormRegister}
       >
         {({errors})=>(
           <Form action="" className="my-10 bg-white shadow rounded-lg px-10 py-5">
