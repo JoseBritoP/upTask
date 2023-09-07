@@ -9,20 +9,24 @@ const Register = () => {
 
   const [exit,setExit] = useState(false)
   const formik = useFormik({
-    initialValues:{username:'',email:'',password:''},
+    initialValues:{username:'',email:'',password:'',repeatPassword:''},
     onSubmit:(values)=>{
       console.log(values)
       setExit(true)
     },
 
     validate:(values)=>{
-      
+      // console.log(values)
+
       const result = registerScheme.safeParse(values);
       if(result.success) return;
       const errors:Record<string,string> = {}
       result.error.issues.forEach((error)=>{
         errors[error.path[0]] = error.message
       });
+      if(values.repeatPassword !== values.password){
+        errors['repeatPassword']='Las contraseñas no coinciden'
+      }
       return errors
     },
     validateOnBlur:true
@@ -85,12 +89,7 @@ const Register = () => {
         </div>
         {/* Password */}
         <div className="my-5">
-          <label
-            htmlFor="password"
-            className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer"
-          >
-            Password
-          </label>
+          <label htmlFor="password" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer"> Password</label>
           <input
             type="password"
             name="password"
@@ -103,6 +102,23 @@ const Register = () => {
           />
           {formik.touched.password && formik.errors.password && (
             <p className="text-red-500 font-semibold">{formik.errors.password}</p>
+          )}
+        </div>
+        {/* RepeatPassword */}
+        <div className="my-5">
+          <label htmlFor="repeatPassword" className="uppercase text-gray-600 block text-xl font-bold hover:cursor-pointer"> Repetir Password</label>
+          <input
+            type="repeatPassword" // Asegúrate de que el tipo de input sea "password"
+            name="repeatPassword"
+            id="repeatPassword"
+            placeholder="Confirma tu contraseña"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.repeatPassword}
+          />
+          {formik.touched.repeatPassword && formik.errors.repeatPassword && (
+            <p className="text-red-500 font-semibold">{formik.errors.repeatPassword}</p>
           )}
         </div>
         <input
