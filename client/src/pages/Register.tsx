@@ -3,16 +3,38 @@ import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { registerScheme } from '../scheme/RegisterScheme'
 import z from 'zod'
+import { registerRequest } from '../server/auth'
+import { useAuthStore } from '../services/auth'
 
 type Register = z.infer<typeof registerScheme>
 const Register = () => {
 
   const [exit,setExit] = useState(false)
+  const [err,setErr] = useState(false)
+
+  const { setToken } = useAuthStore();
   const formik = useFormik({
     initialValues:{username:'',email:'',password:'',repeatPassword:''},
-    onSubmit:(values)=>{
-      console.log(values)
-      setExit(true)
+    onSubmit: async (values)=>{
+      try {
+        const response = await registerRequest(values.username, values.email, values.password);
+  
+        if (response.status === 201) {
+          console.log('Registro exitoso');
+          console.log(response.data);
+          setToken(response.data.token)
+          setExit(true);
+          setErr(false);
+        } else {
+          console.log('Error en el registro');
+          setErr(true);
+          setExit(false)
+        }
+      } catch (error) {
+        console.error('Error: ', error);
+        setErr(true);
+        setExit(false)
+      }
     },
 
     validate:(values)=>{
@@ -42,7 +64,7 @@ const Register = () => {
         <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer">Username</label>
           <input
             type="text" name="username" id="username" placeholder="Username"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-slate-100"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.username}
@@ -59,7 +81,7 @@ const Register = () => {
             name="email"
             id="email"
             placeholder="Email de registro"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-slate-100"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
@@ -76,7 +98,7 @@ const Register = () => {
             name="password"
             id="password"
             placeholder="Ingresa tu contraseña password"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-slate-100"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
@@ -89,11 +111,11 @@ const Register = () => {
         <div className="my-5">
           <label htmlFor="repeatPassword" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer"> Repetir Password</label>
           <input
-            type="repeatPassword"
+            type="password"
             name="repeatPassword"
             id="repeatPassword"
             placeholder="Confirma tu contraseña"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-slate-100"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.repeatPassword}
@@ -110,6 +132,9 @@ const Register = () => {
         {exit && (
           <p className="text-emerald-500 font-bold text-center dark:text-emerald-600">Formulario enviado con éxito</p>
           )}
+        {err && (
+          <p className="text-red-500 font-bold text-center dark:text-red-600">Compruebe los datos ingresados</p>
+        )}
       </form>
       <nav className="lg:flex lg:justify-between">
         <Link to={"/"} className='block text-center my-5 text-slate-500 uppercase text-sm font-bold dark:text-gray-300'>¿Ya tienes una cuenta? Inicia sesión</Link>
