@@ -8,7 +8,6 @@ import morgan from 'morgan'
 import { router } from './routes';
 
 // Server
-
 export const server = express();
 server.disable('x-powered-by');
 server.use(morgan('dev'));

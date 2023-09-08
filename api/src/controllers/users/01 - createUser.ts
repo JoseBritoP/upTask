@@ -2,6 +2,7 @@ import User from "../../models/User";
 import { UserInterface, UserType } from "../../types/user";
 import { bycrypt } from "../../utils/bycript.handler";
 import { generateToken } from "../../utils/jwt.handler";
+import { emailRegister } from "../../helpers/email";
 const checkUsernameExist = async (username:string) => {
   const user = await User.findOne({username});
   if(user) throw new Error (`Username already in use`);
@@ -24,6 +25,11 @@ export const createUser = async ({username,email,password}:UserType):Promise<Use
   newUser.token = tokenValid;
   const savedUser = await newUser.save();
   // return savedUser;
+  emailRegister({
+    username:savedUser.username,
+    email:savedUser.email,
+    token: savedUser.token
+  })
   return {
     id: savedUser._id,
     username: savedUser.username,
