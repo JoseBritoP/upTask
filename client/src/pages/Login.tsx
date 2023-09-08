@@ -39,7 +39,7 @@ const Login = () => {
           <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer">Username</label>
           <input
             type="text" name="username" id="username" placeholder="Username"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-white dark:bg-gray-900 dark:placeholder:text-white"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.username}
@@ -52,18 +52,13 @@ const Login = () => {
         </div>
         {/* Email */}
         <div className="my-5">
-          <label
-            htmlFor="email"
-            className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer"
-          >
-            Email
-          </label>
+          <label htmlFor="email" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer" >Email</label>
           <input
             type="email"
             name="email"
             id="email"
             placeholder="Email de registro"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-white dark:bg-gray-900 dark:placeholder:text-white"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
@@ -85,7 +80,7 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="Ingrese su contraseña"
-            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-white dark:bg-gray-900 dark:placeholder:text-white"
+            className="w-full mt-3 p-3 border rounded-xl bg-gray-50 border-black dark:border-gray-500 dark:bg-gray-900 dark:placeholder:text-gray-300"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
