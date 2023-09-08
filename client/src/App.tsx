@@ -1,10 +1,14 @@
-import {Routes,Route} from 'react-router-dom'
+import { Routes,Route } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
+import { useThemeValue } from './utils/theme'
 
 import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount } from './pages'
 function App() {
+  const {value,handleChangeTheme} = useThemeValue()
 
   return (
+    <div className='p-4 flex flex-col justify-center items-center'>
+      <button className="self-end p-4 text-center font-bold text-slate-900 dark:text-slate-200 focus:text-sky-900 active:text-sky-900 hover:cursor-pointer" onClick={handleChangeTheme}>{value}</button>
     <Routes>
       <Route path='/' element={<AuthLayout/>}>
         <Route index  element={<Login/>} />
@@ -15,6 +19,7 @@ function App() {
       </Route>
       <Route/>
     </Routes>
+    </div>
   )
 }
 
