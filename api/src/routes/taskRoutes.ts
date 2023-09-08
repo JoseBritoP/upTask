@@ -13,7 +13,7 @@ import { postValidate,patchValidate } from "../middlewares/task";
 
 // Enrutado
  
-taskRouter.post('/',checkAuth,postValidate,addTask);
+taskRouter.post('/',checkAuth,addTask);
 taskRouter.get('/:id',checkAuth,getTask);
 taskRouter.patch('/:id',checkAuth,patchValidate,updateTask);
 taskRouter.delete('/:id',checkAuth,deleteTask);
