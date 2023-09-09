@@ -18,17 +18,16 @@ const useForgetPassword = () => {
       try {
         const response = await confirmEmailToChangePassword(values.email);
         // setMessage(response.data.message)
-        setMessage('Success')
-        console.log(response)
+        setMessage(response.data.message)
+        // console.log(response)
         setError(false)
         setSubmit(true)
         
       } catch (error:any) {
-        console.log(error.response.data)
+        // console.log(error.response.data)
         setError(true);
         setSubmit(true)
-        // setMessage(error.response.data)
-        setMessage('Error')
+        setMessage(error.response.data.error)
       }
     },
 
@@ -36,7 +35,9 @@ const useForgetPassword = () => {
       const result = forgetPasswordScheme.safeParse(values)
       if (result.success) return;
       const errors: Record<string, string> = {};
-      console.log(result.error.issues);
+      result.error.issues.forEach((error) => {
+        errors[error.path[0]] = error.message;
+      });
       return errors
     },
     validateOnBlur:true

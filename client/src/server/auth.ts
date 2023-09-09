@@ -11,7 +11,7 @@ export const confirmAccountRequest = async(token:string|undefined) => {
 };
 
 export const confirmEmailToChangePassword = async(email:string|undefined) =>{
-  return axios.post(`${import.meta.env.VITE_API}/forget-password/`,{
+  return axios.post(`${import.meta.env.VITE_API}/auth/forget-password/`,{
     email
   })
 }

@@ -4,10 +4,11 @@ import AlertComponent from '../components/Alert';
 const ForgetPassword = () => {
 
    const { formik, message, error, submit } = useForgetPassword();
+
   return (
     <>
       <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Recuperar el acceso de la <span className="text-slate-700 dark:text-slate-300">cuenta</span></h1>
-      <form action="" className="my-10 bg-white shadow rounded-lg px-10 py-5 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2">
+      <form action="" className="my-10 bg-white shadow rounded-lg px-10 py-5 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
         
         {/* Email */}
         <div className="my-5">
