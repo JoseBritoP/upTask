@@ -5,3 +5,7 @@ export const registerRequest = async(username:string,email:string,password:strin
     username,email,password
   })
 }
+
+export const confirmAccountRequest = async(token:string) => {
+  return axios.get(`${import.meta.env.VITE_API}/auth/${token}`)
+};
