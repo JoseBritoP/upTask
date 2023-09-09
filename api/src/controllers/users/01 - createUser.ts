@@ -6,12 +6,14 @@ import { emailRegister } from "../../helpers/email";
 import { generateId } from "../../helpers/generateId";
 const checkUsernameExist = async (username:string) => {
   const user = await User.findOne({username});
-  if(user) throw new Error (`Username already in use`);
+  // if(user) throw new Error (`Username already in use`);
+  if(user) throw new Error (`Nombre de usuario en uso`);
 
 };
 const checkEmailExist = async (email:string) => {
   const user = await User.findOne({email});
-  if(user) throw new Error (`Email already in use`);
+  // if(user) throw new Error (`Email already in use`);
+  if(user) throw new Error (`El email está en uso`);
 };
 
 export const createUser = async ({username,email,password}:UserType):Promise<UserInterface> => {
@@ -36,6 +38,7 @@ export const createUser = async ({username,email,password}:UserType):Promise<Use
     id: savedUser._id,
     username: savedUser.username,
     email: savedUser.email,
-    token: savedUser.token
+    token: savedUser.token,
+    message: 'Cuenta creada con éxito'
   }
 };

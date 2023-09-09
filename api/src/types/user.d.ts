@@ -18,6 +18,7 @@ export interface UserInterface {
   email: string,
   password?: string;
   token?:string,
+  message?:string
 }
 export type Identifier = {
   identifier: email | username
