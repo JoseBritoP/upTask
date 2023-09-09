@@ -24,7 +24,7 @@ const useRegister = () => {
           console.log('Registro messageoso');
           console.log(response.data);
           setToken(response.data.token);
-          setMessage(response.data.message);
+          setMessage(response.data.message + '. Compruebe su correo');
           setError(false)
           setSubmit(true)
         } else {
