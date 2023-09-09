@@ -15,7 +15,7 @@ const AlertComponent = ({ message, error }: AlertMessage) => {
       error ? 'bg-red-400 text-red-800 dark:bg-red-900 dark:text-red-300' : 'bg-green-300 text-emerald-700 dark:bg-emerald-800 dark:text-green-400'
     } flex justify-left pl-4 items-center rounded-md shadow-md w-full gap-2`}>
       {value}
-      <h1 className={`text-left block my-5 uppercase text-base font-bold `}>{message}</h1>
+      <h1 className={`text-left block my-3 uppercase text-base font-bold `}>{message}</h1>
     </div>
   );
 };

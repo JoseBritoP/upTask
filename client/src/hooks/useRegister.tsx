@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { registerScheme } from '../scheme/RegisterScheme';
@@ -8,8 +9,9 @@ import { useAuthStore } from '../services/auth';
 type RegisterValues = z.infer<typeof registerScheme>;
 
 const useRegister = () => {
-  const [exit, setExit] = useState(false);
-  const [err, setErr] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
+  const [submit,setSubmit] = useState(false)
   const { setToken } = useAuthStore();
 
   const formik = useFormik<RegisterValues>({
@@ -19,20 +21,22 @@ const useRegister = () => {
         const response = await registerRequest(values.username, values.email, values.password);
 
         if (response.status === 201) {
-          console.log('Registro exitoso');
+          console.log('Registro messageoso');
           console.log(response.data);
           setToken(response.data.token);
-          setExit(true);
-          setErr(false);
+          setMessage(response.data.message);
+          setError(false)
+          setSubmit(true)
         } else {
           console.log('Error en el registro');
-          setErr(true);
-          setExit(false);
+          setError(true);
+          setSubmit(true)
         }
-      } catch (error) {
+      } catch (error:any) {
         console.error('Error: ', error);
-        setErr(true);
-        setExit(false);
+        setError(true);
+        setSubmit(true)
+        setMessage(error.response?.data?.error || 'Error desconocido');
       }
     },
 
@@ -51,7 +55,13 @@ const useRegister = () => {
     validateOnBlur: true,
   });
 
-  return { formik, exit, err };
+  if(submit === true){
+    setTimeout(()=>{
+      setSubmit(false)
+    },2000)
+  }
+
+  return { formik, message, error,submit };
 };
 
 export default useRegister;

@@ -1,15 +1,12 @@
-// import { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { useFormik } from 'formik'
 import { registerScheme } from '../scheme/RegisterScheme'
 import z from 'zod'
-// import { registerRequest } from '../server/auth'
-// import { useAuthStore } from '../services/auth'
 import useRegister from '../hooks/useRegister'
+import AlertComponent from '../components/Alert'
 
 type Register = z.infer<typeof registerScheme>
 const Register = () => {
-  const { formik, exit, err } = useRegister();
+  const { formik, message, error, submit } = useRegister();
 
   return (
     <>
@@ -86,12 +83,7 @@ const Register = () => {
           value="Registrarme"
           className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer dark:bg-sky-800 dark:hover:bg-sky-700 transition-colors 300 ease-in mb-5 disabled:bg-sky-950"
         />
-        {exit && (
-          <p className="text-emerald-500 font-bold text-center dark:text-emerald-600">Formulario enviado con éxito</p>
-          )}
-        {err && (
-          <p className="text-red-500 font-bold text-center dark:text-red-600">Compruebe los datos ingresados</p>
-        )}
+        {submit && <AlertComponent message={message} error={error}/>}
       </form>
       <nav className="lg:flex lg:justify-between">
         <Link to={"/"} className='block text-center my-5 text-slate-500 uppercase text-sm font-bold dark:text-gray-300'>¿Ya tienes una cuenta? Inicia sesión</Link>
