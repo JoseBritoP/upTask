@@ -50,8 +50,9 @@ export const userAuthToken = async (req:Request,res:Response) => {
 export const forgetPassword = async (req:Request,res:Response) => {
   // return res.status(200).json({DIY:"Change password"})
   const {email} = req.body;
+  // console.log(email)
   try {
-    const user = await tokenToChangePassword({email});
+    const user = await tokenToChangePassword(email);
     return res.status(200).json({message:user})
   } catch (error:any) {
     return res.status(400).json({error:error.message})

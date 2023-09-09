@@ -8,5 +8,5 @@ export const tokenToChangePassword = async (email:any):Promise<String> => {
   const token = await generateToken(user.id);
   user.token = token;
   await user.save(); 
-  return `Check your email`;
+  return `Compruebe su correo.`;
 };
