@@ -3,6 +3,7 @@ import { UserInterface, UserType } from "../../types/user";
 import { bycrypt } from "../../utils/bycript.handler";
 import { generateToken } from "../../utils/jwt.handler";
 import { emailRegister } from "../../helpers/email";
+import { generateId } from "../../helpers/generateId";
 const checkUsernameExist = async (username:string) => {
   const user = await User.findOne({username});
   if(user) throw new Error (`Username already in use`);
@@ -21,7 +22,8 @@ export const createUser = async ({username,email,password}:UserType):Promise<Use
   
   const passwordHash = await bycrypt(password)
   const newUser = new User({username,email,password:passwordHash})
-  const tokenValid = await generateToken(newUser.id);
+  // const tokenValid = await generateToken(newUser.id);
+  const tokenValid = await generateId();
   newUser.token = tokenValid;
   const savedUser = await newUser.save();
   // return savedUser;
