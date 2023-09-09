@@ -1,64 +1,21 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useFormik } from 'formik'
+// import { useFormik } from 'formik'
 import { registerScheme } from '../scheme/RegisterScheme'
 import z from 'zod'
-import { registerRequest } from '../server/auth'
-import { useAuthStore } from '../services/auth'
+// import { registerRequest } from '../server/auth'
+// import { useAuthStore } from '../services/auth'
+import useRegister from '../hooks/useRegister'
 
 type Register = z.infer<typeof registerScheme>
 const Register = () => {
-
-  const [exit,setExit] = useState(false)
-  const [err,setErr] = useState(false)
-
-  const { setToken } = useAuthStore();
-  const formik = useFormik({
-    initialValues:{username:'',email:'',password:'',repeatPassword:''},
-    onSubmit: async (values)=>{
-      try {
-        const response = await registerRequest(values.username, values.email, values.password);
-  
-        if (response.status === 201) {
-          console.log('Registro exitoso');
-          console.log(response.data);
-          setToken(response.data.token)
-          setExit(true);
-          setErr(false);
-        } else {
-          console.log('Error en el registro');
-          setErr(true);
-          setExit(false)
-        }
-      } catch (error) {
-        console.error('Error: ', error);
-        setErr(true);
-        setExit(false)
-      }
-    },
-
-    validate:(values)=>{
-      // console.log(values)
-
-      const result = registerScheme.safeParse(values);
-      if(result.success) return;
-      const errors:Record<string,string> = {}
-      result.error.issues.forEach((error)=>{
-        errors[error.path[0]] = error.message
-      });
-      if(values.repeatPassword !== values.password){
-        errors['repeatPassword']='Las contraseñas no coinciden'
-      }
-      return errors
-    },
-    validateOnBlur:true
-  })
+  const { formik, exit, err } = useRegister();
 
   return (
     <>
       <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Crea tu cuenta {<br></br>} para administrar tus <span className="text-slate-700 dark:text-slate-300">proyectos</span>
       </h1>
-      <form action="" className="my-10 bg-white shadow rounded-lg px-5 py-2 pb-0 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
+      <form action="" className="my-10 bg-white shadow rounded-lg px-5 py-2 pb-4 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
         {/* Username */}
         <div className="my-5">
         <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer">Username</label>
