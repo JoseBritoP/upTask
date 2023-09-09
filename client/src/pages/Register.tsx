@@ -58,7 +58,7 @@ const Register = () => {
     <>
       <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Crea tu cuenta {<br></br>} para administrar tus <span className="text-slate-700 dark:text-slate-300">proyectos</span>
       </h1>
-      <form action="" className="my-10 bg-white shadow rounded-lg px-10 py-5 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
+      <form action="" className="my-10 bg-white shadow rounded-lg px-5 py-2 pb-0 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
         {/* Username */}
         <div className="my-5">
         <label htmlFor="username" className="uppercase text-gray-600 block text-xl font-bold dark:text-gray-200 hover:cursor-pointer">Username</label>
