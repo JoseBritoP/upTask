@@ -10,7 +10,7 @@ const Register = () => {
 
   return (
     <>
-      <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Crea tu cuenta {<br></br>} para administrar tus <span className="text-slate-700 dark:text-slate-300">proyectos</span>
+      <h1 className="text-sky-600 font-black text-2xl sm:text-3xl md:text-4xl uppercase text-center">Crea tu cuenta {<br></br>} para administrar tus <span className="text-slate-700 dark:text-slate-300">proyectos</span>
       </h1>
       <form action="" className="my-10 bg-white shadow rounded-lg px-5 py-2 pb-4 border-2 dark:bg-slate-950 dark:border-gray-700 dark:border-2" onSubmit={formik.handleSubmit}>
         {/* Username */}
