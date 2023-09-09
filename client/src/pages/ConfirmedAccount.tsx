@@ -1,30 +1,33 @@
-import { useState,useEffect } from "react"
-import { useParams,Link } from "react-router-dom"
-// import { confirmAccountRequest } from "../server/auth"
-import axios from 'axios'
+import { useParams, Link } from 'react-router-dom';
+import useAccountConfirmation from '../hooks/useAccountConfirmation';
+import AlertComponent from '../components/Alert';
+
 const ConfirmedAccount = () => {
-  // const [alertMessage,setAlertMessage] = useState(false);
-  // const [userConfirm,setUserConfirm] = useState(false);
 
   const { token } = useParams();
-  useEffect(()=>{
-    const confirmAccount = async () => {
-      try {
-        const {data} = await axios.get(`${import.meta.env.VITE_API}/auth/${token}`)
-        console.log(data)
-        alert(`${data.message}`)
-      } catch (error:any) {
-        console.log(error.response.data.error)
-        alert(error.response.data.error)
-      }
-    };
-    confirmAccount()
-  },[token])
+  const { message, userConfirm, error } = useAccountConfirmation(token);
+
   return (
     <>
-      <h1 className="text-sky-600 font-black text-4xl uppercase text-center">Confirma tu cuenta para crear tus <span className="text-slate-700 dark:text-slate-100">proyectos</span></h1>
+      <h1 className="text-sky-600 font-black text-4xl uppercase text-center">
+        Confirma tu cuenta para crear tus{' '}
+        <span className="text-slate-700 dark:text-slate-100">proyectos</span>
+      </h1>
+      <div className="bg-slate-100 p-8 flex flex-col gap-2 justify-center items-center rounded-xl border-2 border-gray-300 shadow-xl dark:bg-gray-900 mt-20 dark:border-gray-700 dark:shadow-slate-900 dark:shadow-md">
+        <AlertComponent message={message} error={error} />
+        {userConfirm === true ? (
+          <Link
+            to={"/"}
+            className='block text-center my-5 p-2 text-slate-500 uppercase text-base font-bold dark:text-gray-300 hover:dark:text-gray-50'
+          >
+            Inicia sesión
+          </Link>
+        ): (
+          <p className='block text-center my-5 p-2 text-red-700 uppercase text-lg font-bold dark:text-red-300 hover:dark:text-gray-50'>Token expirado</p>
+        )}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default ConfirmedAccount
+export default ConfirmedAccount;
