@@ -126,7 +126,7 @@ const Register = () => {
         </div>
         <input
           type="submit"
-          value="Iniciar sesión"
+          value="Registrarme"
           className="bg-sky-700 w-full py-3 text-white rounded uppercase font-bold hover:bg-sky-600 hover:cursor-pointer dark:bg-sky-800 dark:hover:bg-sky-700 transition-colors 300 ease-in mb-5 disabled:bg-sky-950"
         />
         {exit && (
