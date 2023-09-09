@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { confirmAccountRequest } from '../server/auth';
 
 const useAccountConfirmation = (token:string|undefined) => {
   const [message, setMessage] = useState('');
@@ -10,7 +11,7 @@ const useAccountConfirmation = (token:string|undefined) => {
   useEffect(() => {
     const confirmAccount = async () => {
       try {
-        const { data } = await axios.get(`${import.meta.env.VITE_API}/auth/${token}`);
+        const { data } = await confirmAccountRequest(token);
         console.log(data);
         // alert(`${data.message}`);
         setMessage(data.message);
