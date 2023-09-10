@@ -21,3 +21,11 @@ export const newPassword = async(password:string|undefined,token:string|undefine
     password
   })
 };
+
+export const loginRequest = async(username:string|undefined,password:string) =>{
+  return axios.post(`${import.meta.env.VITE_API}/auth/login`,{
+    username: username || '' ,
+    // email: email || '',
+    password
+  })
+}
