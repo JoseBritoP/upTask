@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import { registerScheme } from '../scheme/RegisterScheme';
 import z from 'zod';
 import { registerRequest } from '../server/auth';
-import { useAuthStore } from '../services/auth';
 
 type RegisterValues = z.infer<typeof registerScheme>;
 
@@ -12,7 +11,6 @@ const useRegister = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
   const [submit,setSubmit] = useState(false)
-  const { setToken } = useAuthStore();
 
   const formik = useFormik<RegisterValues>({
     initialValues: { username: '', email: '', password: '', repeatPassword: '' },
@@ -23,7 +21,6 @@ const useRegister = () => {
         if (response.status === 201) {
           console.log('Registro messageoso');
           console.log(response.data);
-          setToken(response.data.token);
           setMessage(response.data.message + '. Compruebe su correo');
           setError(false)
           setSubmit(true)
