@@ -15,3 +15,9 @@ export const confirmEmailToChangePassword = async(email:string|undefined) =>{
     email
   })
 }
+
+export const newPassword = async(password:string|undefined,token:string|undefined) => {
+  return axios.patch(`${import.meta.env.VITE_API}/auth/change-password/${token}`,{
+    password
+  })
+};
