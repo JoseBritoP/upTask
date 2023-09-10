@@ -32,7 +32,8 @@ export type UserLogged = {
   id:ObjectId
   username:string,
   email:string,
-  token:string
+  token:string,
+  message:string
 }
 
 export type ChangePassword = {
