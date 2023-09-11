@@ -28,6 +28,10 @@ const proyectSchema =  new mongoose.Schema({
     type: Boolean,
     default : false
   },
+  completed:{
+    type: Boolean,
+    default : false
+  },
   collaborators:[
     {
       type:mongoose.Schema.Types.ObjectId,
