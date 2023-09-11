@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     maxlength:250,
     trim:true
   },
+  userType: {
+     type: String, 
+     enum: ['client', 'admin'],
+     default: 'client' 
+    },
   token:{
     type:String
   },
@@ -29,7 +34,19 @@ const userSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
-  deleted:{
+  active:{
+    type:Boolean,
+    default:true
+  },
+  suspend:{
+    type:Boolean,
+    default:false
+  },
+  banned:{
+    type:Boolean,
+    default:false
+  },
+  premium:{
     type:Boolean,
     default:false
   },
