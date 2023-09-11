@@ -6,20 +6,19 @@ import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToCha
 
 // Handlers
 
-export const getUsers = async (req:Request,res:Response) => {
+export const getUsers = async (_req:Request,res:Response) => {
   try {
     const users = await getAllUsers();
     return res.status(200).json(users)
   } catch (error:any) {
     return res.status(404).json({error: error.message})
   }
-  return res.status(200).json({DIY:`All users`})
 };
 
 export const userRegister = async (req:Request,res:Response) => {
-  const {username,email,password} = req.body;
+  const {username,email,userType,password} = req.body;
   try {
-    const newUser = await createUser({username,email,password});
+    const newUser = await createUser({username,email,userType,password});
     return res.status(201).json(newUser)
   } catch (error:any) {
     return res.status(400).json({error:error.message})

@@ -1,7 +1,9 @@
+type User = 'client' | 'admin'
 export type UserType = {
   id?: string;
   username: string;
   email: string,
+  userType:User,
   password: string;
   token?:string,
 };
@@ -11,7 +13,6 @@ export type UserAuth = {
   username:string,
   email:string
 }
-
 export interface UserInterface {
   id: ObjectId;
   username: string;

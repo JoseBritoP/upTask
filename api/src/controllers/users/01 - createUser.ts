@@ -16,14 +16,14 @@ const checkEmailExist = async (email:string) => {
   if(user) throw new Error (`El email está en uso`);
 };
 
-export const createUser = async ({username,email,password}:UserType):Promise<UserInterface> => {
+export const createUser = async ({username,email,userType='client',password}:UserType):Promise<UserInterface> => {
 
   await checkUsernameExist(username);
   await checkEmailExist(email);
 
   
   const passwordHash = await bycrypt(password)
-  const newUser = new User({username,email,password:passwordHash})
+  const newUser = new User({username,email,userType,password:passwordHash})
   // const tokenValid = await generateToken(newUser.id);
   const tokenValid = await generateId();
   newUser.token = tokenValid;
