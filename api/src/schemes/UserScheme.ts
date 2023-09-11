@@ -13,9 +13,7 @@ const userScheme = z.object({
     invalid_type_error: 'The email must be a string'
   }).regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/i
   ,{ message: "Invalid Email Address! Try like 'john@gmail.com'" }),
-  userType: z.string({
-    invalid_type_error: 'The userType must be a string'
-  }).default('client'),
+  userType: z.enum(['admin','client']).default('client'),
   password: z.string({
     invalid_type_error: ' The password must be a string',
     required_error: 'The password is a requiered field',
