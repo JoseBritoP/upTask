@@ -17,9 +17,9 @@ export const useAuthStore = create(
     users: [],
     token: '',
 
-    setToken: (token: string) => set((state) => ({
-        token,
-      })),
+    setToken: (token: string) => set((state) => ({...state,token,})),
+    clearToken: () => set((state)=>({...state,token:''}))
+    
   }), {
     name: 'auth',
   })
