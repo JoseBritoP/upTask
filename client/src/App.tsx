@@ -1,7 +1,7 @@
 import { Routes,Route } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
 import { useThemeValue } from './utils/theme'
-import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount } from './pages'
+import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount,Error } from './pages'
 
 function App() {
   const {value,handleChangeTheme} = useThemeValue()
@@ -17,7 +17,7 @@ function App() {
         <Route path='forget-password/:token' element={<NewPassword/>} />
         <Route path='confirm-account/:token' element={<ConfirmedAccount/>} />
       </Route>
-      <Route/>
+      <Route path='/*' element={<Error/>}/>
     </Routes>
     </div>
   )
