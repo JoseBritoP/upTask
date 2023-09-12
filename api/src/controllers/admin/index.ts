@@ -6,6 +6,7 @@ import { getAllUsersNoPremium } from "./05 - getAllUsersNoPremium";
 import { premiumStatus } from "./06 - premiumStatus";
 import { banStatus } from "./07 - banStatus";
 import { deleteUsersNoConfirm } from "./08 - deleteUsersNoConfirm";
+import { deleteUserNoConfirm } from "./09 - deleteUserNoConfirm";
 
 export {
   getAllUsersBD,
@@ -15,5 +16,6 @@ export {
   getAllUsersNoPremium,
   premiumStatus,
   banStatus,
-  deleteUsersNoConfirm
+  deleteUsersNoConfirm,
+  deleteUserNoConfirm
 }
