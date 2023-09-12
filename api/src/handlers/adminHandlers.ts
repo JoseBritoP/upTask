@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium,premiumStatus } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium,premiumStatus,banStatus } from '../controllers/admin';
 
 // Handlers
 
@@ -68,5 +68,14 @@ export const premiumUser = async (req:Request,res:Response) => {
   } catch (error:any) {
     return res.status(400).json({error:error.message})
   }
-  return res.status(200).json({DIY: 'REMOVE PREMIUM STATUS USERS'})
 }
+
+export const banUser = async (req:Request,res:Response) => {
+  const { id } = req.params;
+  try {
+    const bannedUser = await banStatus(id)
+    return res.status(200).json(bannedUser)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
+};

@@ -4,6 +4,7 @@ import { getAllUsersNoConfirmates } from "./03 - getAllUsersNoConfirmates";
 import { getAllUsersPremium } from "./04 - getAllUsersPremium";
 import { getAllUsersNoPremium } from "./05 - getAllUsersNoPremium";
 import { premiumStatus } from "./06 - premiumStatus";
+import { banStatus } from "./07 - banStatus";
 
 export {
   getAllUsersBD,
@@ -11,5 +12,6 @@ export {
   getAllUsersNoConfirmates,
   getAllUsersPremium,
   getAllUsersNoPremium,
-  premiumStatus
+  premiumStatus,
+  banStatus
 }
