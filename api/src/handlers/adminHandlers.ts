@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium } from '../controllers/admin';
 
 // Handlers
 
@@ -42,12 +42,22 @@ export const deleteAllUsersNoConfirm = async (_req:Request,res:Response) => {
   return res.status(200).json({DIY: 'DELETE ALL USERS NO CONFIRM'})
 };
 
-export const getAllUsersPremium = async(_req:Request,res:Response) => {
-  return res.status(200).json({DIY: 'ALL USERS PREMIUM'})
+export const getUsersPremium = async(_req:Request,res:Response) => {
+  try {
+    const users = await getAllUsersPremium();
+    return res.status(200).json(users)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
 
-export const getAllUsersNoPremium = async(_req:Request,res:Response) => {
-  return res.status(200).json({DIY: 'ALL USERS NO PREMIUM'})
+export const getUsersNoPremium = async(_req:Request,res:Response) => {
+  try {
+    const users = await getAllUsersNoConfirmates();
+    return res.status(200).json(users)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
 
 export const removePremiumUser = async (_req:Request,res:Response) => {
