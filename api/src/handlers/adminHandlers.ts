@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates } from '../controllers/admin';
 
 // Handlers
 
@@ -26,7 +26,12 @@ export const getAllUsersConfirm = async(_req:Request,res:Response) => {
 }
 
 export const getAllUsersNoConfirm = async(_req:Request,res:Response) => {
-  return res.status(200).json({DIY: 'ALL USERS NO CONFIRM'})
+  try {
+    const users = await getAllUsersNoConfirmates();
+    return res.status(200).json(users)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 }
 
 export const deleteUserNoConfirm = async (_req:Request,res:Response) => {
