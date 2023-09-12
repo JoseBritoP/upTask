@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium } from '../controllers/admin';
 
 // Handlers
 
@@ -53,7 +53,7 @@ export const getUsersPremium = async(_req:Request,res:Response) => {
 
 export const getUsersNoPremium = async(_req:Request,res:Response) => {
   try {
-    const users = await getAllUsersNoConfirmates();
+    const users = await getAllUsersNoPremium();
     return res.status(200).json(users)
   } catch (error:any) {
     return res.status(404).json({error:error.message})
