@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium,premiumStatus } from '../controllers/admin';
 
 // Handlers
 
@@ -60,10 +60,13 @@ export const getUsersNoPremium = async(_req:Request,res:Response) => {
   }
 }
 
-export const removePremiumUser = async (_req:Request,res:Response) => {
+export const premiumUser = async (req:Request,res:Response) => {
+  const { id } = req.params
+  try {
+    const user = await premiumStatus(id);
+    return res.status(200).json(user)
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
+  }
   return res.status(200).json({DIY: 'REMOVE PREMIUM STATUS USERS'})
-}
-
-export const givePremiumUser = async (_req:Request,res:Response) => {
-  return res.status(200).json({DIY: 'GIVE PREMIUUM STATUS USERS'})
 }
