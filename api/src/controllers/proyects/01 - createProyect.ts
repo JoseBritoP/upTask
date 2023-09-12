@@ -5,10 +5,10 @@ import { NewProyect } from "../../types/proyect";
 export const createProyect = async ({name,description,client,creatorId}:NewProyect) => {
   const user = await User.findOne({
     _id:creatorId,
-    deleted:false
+    banned:false
   })
+  if(!user) throw new Error(`Creator not found`);
   const newProyect = new Proyect({name,description,client});
-  if(!user) throw new Error(`Creator not found`)
   newProyect.creator = new mongoose.Types.ObjectId(creatorId);
   const savedProyect = await newProyect.save();
   user.proyects.push(savedProyect._id);
