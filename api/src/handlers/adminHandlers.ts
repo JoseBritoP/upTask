@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 
 // Controllers
 
-import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium,premiumStatus,banStatus } from '../controllers/admin';
+import { getAllUsersBD,getAllUsersConfirmates,getAllUsersNoConfirmates,getAllUsersPremium,getAllUsersNoPremium,premiumStatus,banStatus,deleteUsersNoConfirm } from '../controllers/admin';
 
 // Handlers
 
@@ -39,7 +39,13 @@ export const deleteUserNoConfirm = async (_req:Request,res:Response) => {
 };
 
 export const deleteAllUsersNoConfirm = async (_req:Request,res:Response) => {
-  return res.status(200).json({DIY: 'DELETE ALL USERS NO CONFIRM'})
+  try {
+    const usersNoConfirm = await deleteUsersNoConfirm();
+    return res.status(200).json(usersNoConfirm)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
+  // return res.status(200).json({DIY: 'DELETE ALL USERS NO CONFIRM'})
 };
 
 export const getUsersPremium = async(_req:Request,res:Response) => {
