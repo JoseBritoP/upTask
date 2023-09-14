@@ -1,4 +1,5 @@
 // import axios from "../libs/axios";
+import axiosAuth from '../libs/axios'
 import axios from 'axios'
 export const registerRequest = async(username:string,email:string,password:string) => {
   return axios.post(`${import.meta.env.VITE_API}/auth/register/`,{
@@ -27,5 +28,11 @@ export const loginRequest = async(username:string|undefined,password:string) =>{
     username: username || '' ,
     // email: email || '',
     password
+  })
+}
+
+export const createProyect = async (name:string,description:string,client:string) =>{
+  return axiosAuth.post('/proyect',{
+    name,description,client
   })
 }
