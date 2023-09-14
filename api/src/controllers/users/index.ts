@@ -5,6 +5,7 @@ import { tokenToChangePassword } from "./04 - tokenToChangePassword";
 import { validTokenToChangePassword } from "./05 - validToken";
 import { newPassword } from "./06 - newPassword";
 import { getAllUsers } from "./07 - getAllUsers";
+import { userInfo } from "./08 - userInfo";
 
 export {
   createUser,
@@ -13,5 +14,6 @@ export {
   tokenToChangePassword,
   validTokenToChangePassword,
   newPassword,
-  getAllUsers
+  getAllUsers,
+  userInfo
 }

@@ -13,10 +13,10 @@ import { checkAuth, postValidate } from "../middlewares/user";
 // Enrutado
 
 userRouter.get('/',getUsers)
+userRouter.get('/profile',checkAuth,perfil)
 userRouter.post('/register',postValidate,userRegister);
 userRouter.get('/:token',userAuthToken);
 userRouter.post('/login',userLogin);
 userRouter.post('/forget-password',forgetPassword); //Email
 userRouter.get('/forget-password/:token',checkToken); // Email
 userRouter.patch('/change-password/:token',changePassword);
-userRouter.get('/perfil',checkAuth,perfil)

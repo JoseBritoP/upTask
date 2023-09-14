@@ -1,7 +1,7 @@
 import User from "../../models/User";
 
 export const getAllUsers = async () => {
-  const users = await User.find({deleted:false,confirmed:true})
+  const users = await User.find({banned:false,confirmed:false})
   .select("_id username email proyects")
   .populate({
     path: "proyects",

@@ -1,8 +1,8 @@
-import {Request,Response} from 'express';
-
+import { Request, Response } from 'express';
+import { RequestUser } from '../middlewares/user/checkAuth';
 // Controllers
 
-import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToChangePassword,newPassword, getAllUsers } from '../controllers/users';
+import { createUser,loginUser,confirmToken,tokenToChangePassword,validTokenToChangePassword,newPassword, getAllUsers,userInfo } from '../controllers/users';
 
 // Handlers
 
@@ -79,6 +79,12 @@ export const changePassword = async (req:Request,res:Response) => {
   }
 };
 
-export const perfil = async(req:Request,res:Response) => {
-  
+export const perfil = async(req:RequestUser,res:Response) => {
+  const {creatorId}:any = req.user
+  try {
+    const user = await userInfo(creatorId);
+    return res.status(200).json(user)
+  } catch (error:any) {
+    return res.status(404).json({error:error.message})
+  }
 };
