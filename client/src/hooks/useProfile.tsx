@@ -12,7 +12,9 @@ const useProfile = () => {
     email: '',
     proyects:[]
   })
-  
+
+  const [load,setLoad] = useState(true);
+
   // const token = useAuthStore.getState().token;
   useEffect(()=>{
     const auth = async () =>{
@@ -24,11 +26,12 @@ const useProfile = () => {
         // alert(error.response||'error desconocido')
         console.log(error)
       }
+      setLoad(false)
     }
     auth()
   },[])
 
-  return {user}
+  return { user, load }
 }
 
 export default useProfile
