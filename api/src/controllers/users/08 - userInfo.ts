@@ -1,7 +1,7 @@
 import User from "../../models/User";
 
 export const userInfo = async (id:string) => {
-  console.log(id)
+  // console.log(id)
   const user = await User.findOne({_id:id})
   .select('_id username email token proyects')
   .populate({
