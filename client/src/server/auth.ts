@@ -31,6 +31,10 @@ export const loginRequest = async(username:string|undefined,password:string) =>{
   })
 }
 
+export const getProfile = async () => {
+  return axiosAuth.get('/auth/profile')
+};
+
 export const createProyect = async (name:string,description:string,client:string) =>{
   return axiosAuth.post('/proyect',{
     name,description,client

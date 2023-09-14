@@ -4,6 +4,8 @@ import ForgetPassword from "./ForgetPassword";
 import NewPassword from "./NewPassword";
 import ConfirmedAccount from "./ConfirmedAccount";
 import Error from "./Error";
+import Proyects from "./Proyects";
+import Landing from "./Landing";
 
 export {
   Login,
@@ -11,5 +13,7 @@ export {
   ForgetPassword,
   NewPassword,
   ConfirmedAccount,
-  Error
+  Error,
+  Proyects,
+  Landing
 }
