@@ -5,10 +5,12 @@ import { loginScheme } from "../scheme/LoginScheme";
 import z from 'zod'
 import { loginRequest } from "../server/auth";
 import { useAuthStore } from "../services/auth";
+import { useNavigate } from "react-router-dom";
 
 type LoginValues = z.infer<typeof loginScheme>
 
 const useLogin = () => {
+  const navigate = useNavigate()
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
   const [submit,setSubmit] = useState(false);
@@ -29,6 +31,9 @@ const useLogin = () => {
         setMessage(response.data.message);
         setError(false)
         setSubmit(true)
+        setTimeout(()=>{
+          navigate('/proyects')
+        },1000)
       } catch (error:any) {
         console.error('Error: ', error);
         setError(true);
