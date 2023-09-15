@@ -19,6 +19,7 @@ export interface UserInterface {
   email: string,
   password?: string;
   token?:string,
+  userType:string
   message?:string
 }
 export type Identifier = {
@@ -34,6 +35,7 @@ export type UserLogged = {
   username:string,
   email:string,
   token:string,
+  userType:string
   message:string
 }
 

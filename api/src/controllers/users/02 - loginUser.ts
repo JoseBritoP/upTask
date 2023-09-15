@@ -24,6 +24,7 @@ export const loginUser = async ({identifier,password}:UserLogin):Promise<UserLog
     username: user?.username,
     email: user?.email,
     token: user?.token,
+    userType: user.userType,
     message: 'Login exitoso!'
   }
 };

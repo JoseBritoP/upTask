@@ -39,6 +39,7 @@ export const createUser = async ({username,email,userType='client',password}:Use
     username: savedUser.username,
     email: savedUser.email,
     token: savedUser.token,
+    userType: savedUser.userType,
     message: 'Cuenta creada con éxito'
   }
 };
