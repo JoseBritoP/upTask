@@ -4,13 +4,15 @@ import { useFormik } from 'formik';
 import { registerScheme } from '../scheme/RegisterScheme';
 import z from 'zod';
 import { registerRequest } from '../server/auth';
+import { useNavigate } from 'react-router-dom';
 
 type RegisterValues = z.infer<typeof registerScheme>;
 
 const useRegister = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const [submit,setSubmit] = useState(false)
+  const [submit,setSubmit] = useState(false);
+  const navigate = useNavigate();
 
   const formik = useFormik<RegisterValues>({
     initialValues: { username: '', email: '', password: '', repeatPassword: '' },
@@ -24,6 +26,10 @@ const useRegister = () => {
           setMessage(response.data.message + '. Compruebe su correo');
           setError(false)
           setSubmit(true)
+          setTimeout(()=>{
+            navigate('/login')
+
+          },2500)
         } else {
           console.log('Error en el registro');
           setError(true);
