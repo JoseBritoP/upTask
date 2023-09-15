@@ -19,7 +19,8 @@ export const userInfo = async (id:string) => {
   return {
     id: user._id,
     username:user.username,
-    email : user.email ,
+    email : user.email,
+    userType: user.userType,
     proyects: user.proyects.length === 0 ? 'Crea tus proyectos para verlos aquí' : user.proyects 
   }
 }
