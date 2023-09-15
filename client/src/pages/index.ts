@@ -6,6 +6,7 @@ import ConfirmedAccount from "./ConfirmedAccount";
 import Error from "./Error";
 import Proyects from "./Proyects";
 import Landing from "./Landing";
+import AdminDashboard from "./AdminDashboard";
 
 export {
   Login,
@@ -15,5 +16,6 @@ export {
   ConfirmedAccount,
   Error,
   Proyects,
-  Landing
+  Landing,
+  AdminDashboard
 }

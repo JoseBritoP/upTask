@@ -5,7 +5,7 @@ import useSession from "../hooks/useSession";
 
 const RoutePrivates = () => {
   const {user, load} = useProfile();
-  const { id, username, email, proyects } = user;
+  const { id } = user;
   const { session } = useSession();
   console.log(session)
   // console.log(load)

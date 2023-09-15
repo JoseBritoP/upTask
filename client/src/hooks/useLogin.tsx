@@ -32,7 +32,8 @@ const useLogin = () => {
         setError(false)
         setSubmit(true)
         setTimeout(()=>{
-          navigate('/proyects')
+          response.data.userType === 'client' ? navigate('/proyects') : navigate('/admin')
+          // navigate('/proyects')
         },1000)
       } catch (error:any) {
         console.error('Error: ', error);
