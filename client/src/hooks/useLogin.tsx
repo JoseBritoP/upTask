@@ -15,7 +15,7 @@ const useLogin = () => {
   const [error, setError] = useState(false);
   const [submit,setSubmit] = useState(false);
   const [login,setLogin] =useState('email');
-  const { setToken } = useAuthStore();
+  const { setToken,setProfile } = useAuthStore();
 
   const handleLoginChange = () => {
     setLogin((prevLogin)=>(prevLogin === 'email' ? 'user' : 'email'))
@@ -31,6 +31,7 @@ const useLogin = () => {
         setMessage(response.data.message);
         setError(false)
         setSubmit(true)
+        setProfile(response.data)
         setTimeout(()=>{
           response.data.userType === 'client' ? navigate('/proyects') : navigate('/admin')
           // navigate('/proyects')
