@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount,Error,Proyects,Landing,AdminDashboard } from './pages'
 function App() {
   return (
-    <div className='p-4 flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center'>
     <Navbar/>
     <Routes>
       <Route path='/' element={<AuthLayout/>}>
