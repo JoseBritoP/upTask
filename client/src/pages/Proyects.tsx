@@ -1,11 +1,9 @@
-import React from 'react'
-import { useAuthStore } from '../services/auth';
 
 const Proyects = () => {
   return (
-    <div>
-      Proyects
-    </div>
+    <>
+      <h1 className="text-xl font-black md:text-2xl text-black dark:text-white">Proyectos</h1>
+    </>
   )
 }
 
