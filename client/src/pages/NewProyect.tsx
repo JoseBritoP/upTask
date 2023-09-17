@@ -1,10 +1,9 @@
-import React from 'react'
 
 const NewProyect = () => {
   return (
-    <div>
-      NewProyect
-    </div>
+    <>
+      <h1 className="text-xl font-black md:text-2xl text-black dark:text-white">Nuevo Proyecto</h1>
+    </>
   )
 }
 
