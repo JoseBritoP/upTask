@@ -22,6 +22,7 @@ export interface UserStore {
   users: User[];
   token: string;
   profile:Profile,
+  load:boolean
 }
 
 export const useAuthStore = create(
@@ -35,6 +36,7 @@ export const useAuthStore = create(
       userType:"",
       token:''
     },
+    load:false,
 
     setToken: (token: string) => set((state) => ({...state,token,})),
     clearProfile: () => set((state)=>({...state,token:'',profile:{
