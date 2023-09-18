@@ -5,16 +5,18 @@ import z from 'zod'
 import { proyectSheme } from '../scheme/ProyectScheme';
 import { createProyect } from '../server/proyect';
 import { useProyectStore } from '../services/proyect';
+import { useNavigate } from 'react-router-dom';
 
 type ProyectValues = z.infer<typeof proyectSheme>
 const useProyectForm = () => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
   const [submit,setSubmit] = useState(false);
   const { setProyects } = useProyectStore();
 
   const formik = useFormik<ProyectValues>({
-    initialValues:{name:'',description:'',client:''},
+    initialValues:{name:'',description:'',limitdate:'',client:''},
     onSubmit: async (values) => {
       try {
         const response = await createProyect(values.name,values.description,values.client);
@@ -23,10 +25,13 @@ const useProyectForm = () => {
         setMessage('Proyecto creado');
         setError(false);
         setProyects(response.data);
-        setSubmit(true)
+        setSubmit(true);
+        setTimeout(()=>{
+          navigate('/proyects')
+        },1200)
       } catch (error:any) {
         console.log('Error: ', error);
-        setMessage(`Hubo un problema al crear el proyecto ${error.response.data.error}`);
+        setMessage(error.response.data.error);
         setError(true)
         setSubmit(true)
       }

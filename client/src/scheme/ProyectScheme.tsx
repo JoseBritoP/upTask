@@ -17,6 +17,8 @@ export const proyectSheme = z.object({
     .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,{
       message: 'Invalid characters in the description',
     }),
+  limitdate:
+  z.string(),
   client: 
     z.string({
       required_error:"Client's Name is a required Field",
