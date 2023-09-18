@@ -10,10 +10,10 @@ const Navbar = () => {
   const {value,handleChangeTheme} = useThemeValue();
 
   return (
-    <nav className="bg-sky-700 dark:bg-sky-950 flex w-full justify-evenly sm:justify-between items-center pt-2 pb-3 sm:px-6 border-b-2 border-gray-950 dark:border-gray-300">
+    <nav className="bg-sky-700 dark:bg-sky-950 flex w-full h-20 justify-evenly sm:justify-between items-center pt-2 pb-3 sm:px-6 border-b-2 border-gray-950 dark:border-gray-300">
       <div>
         <Link to={"/"}>
-          <h1 className="text-sky-600 font-black text-2xl sm:text-4xl uppercase text-center transition-transform ease-out duration-200 hover:text-sky-500 hover:cursor-pointer pl-2 pr-4">Up<span className="text-slate-300 hover:text-slate-100 dark:text-slate-300 dark:hover:text-slate-50">Task</span></h1>
+          <h1 className="text-sky-600 font-black text-3xl sm:text-4xl uppercase text-center transition-transform ease-out duration-200 hover:text-sky-500 hover:cursor-pointer pl-2 pr-4">Up<span className="text-slate-300 hover:text-slate-100 dark:text-slate-300 dark:hover:text-slate-50">Task</span></h1>
         </Link>
       </div>
       {profile.userType === "client" && (
