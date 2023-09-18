@@ -19,10 +19,10 @@ const NavbarClient = () => {
   );
 
   return (
-    <div className='pr-5'>
+    <div className='pr-5 md:hidden'>
       <button onClick={handleItems}>{iconValue}</button>
       {modal && (
-        <div className='flex flex-col border-2 border-t-0 rounded-xl bg-sky-700 text-white dark:bg-sky-950 p-4 absolute top-10 right-0 sm:right-1 md:hidden transition-all duration-200 ease-in-out sm:self-end'>
+        <div className='flex flex-col border-2 border-t-0 rounded-xl bg-sky-700 text-white dark:bg-sky-950 p-4 absolute top-10 right-0 sm:hidden md:hidden transition-all duration-200 ease-in-out sm:self-end'>
           <Link to={"/proyects"}>
             <h2 className="hover:underline" onClick={handleItems}>Proyectos</h2>
           </Link>

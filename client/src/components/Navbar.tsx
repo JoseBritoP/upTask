@@ -38,7 +38,7 @@ const Navbar = () => {
         (
           // Usuario logueado y es cliente
           <>
-            <div className="md:flex gap-1 sm:gap-2 md:gap-3 justify-center items-center text-gray-200 bg-white sm:bg-red-500 hidden md:bg-violet-500 lg:bg-blue-500 xl:bg-yellow-500 ">
+            <div className="hidden md:flex gap-1 sm:gap-2 md:gap-3 justify-center items-center text-gray-200">
               <Link to={"/proyects"}>
                 <h2 className="hover:underline">Proyectos</h2>
               </Link>
