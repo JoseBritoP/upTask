@@ -5,3 +5,7 @@ export const createProyect = async (name:string,description:string,client:string
     name,description,client
   })
 }
+
+export const getProyects = async () => {
+  return axios.get('/proyect');
+};

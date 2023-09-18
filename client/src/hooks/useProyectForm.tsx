@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useFormik } from 'formik';
 import z from 'zod'
 import { proyectSheme } from '../scheme/ProyectScheme';
-import { createProyect } from '../server/proyect';
+import { createProyect, getProyects } from '../server/proyect';
 import { useProyectStore } from '../services/proyect';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +24,8 @@ const useProyectForm = () => {
         console.log(response.data);
         setMessage('Proyecto creado');
         setError(false);
-        setProyects(response.data);
+        const proyect = await getProyects();
+        setProyects(proyect.data);
         setSubmit(true);
         setTimeout(()=>{
           navigate('/proyects')
