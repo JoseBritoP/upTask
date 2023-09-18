@@ -9,7 +9,7 @@ const RoutePrivates = () => {
       {profile.id !== "" ? (
         <div className="flex flex-col md:flex-row md:min-h-[55.4rem]">
           <Aside/>
-          <main className="flex flex-col flex-1 justify-start items-center gap-4 p-6">
+          <main className="flex flex-col flex-1 justify-start items-center gap-4 p-6 w-full">
             <Outlet/>
           </main>
         </div>
