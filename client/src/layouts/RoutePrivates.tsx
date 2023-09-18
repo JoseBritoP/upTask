@@ -7,7 +7,7 @@ const RoutePrivates = () => {
   return (
     <div className="text-white w-full">
       {profile.id !== "" ? (
-        <div className="flex flex-col md:flex-row md:min-h-screen">
+        <div className="flex flex-col md:flex-row md:min-h-[55.4rem]">
           <Aside/>
           <main className="flex-1 p-6">
             <Outlet/>
