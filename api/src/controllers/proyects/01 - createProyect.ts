@@ -8,7 +8,7 @@ export const createProyect = async ({name,description,client,creatorId}:NewProye
     banned:false
   })
   if(!user) throw new Error(`Creator not found`);
-  if(!user.premium && user.proyects?.length >= 2) throw new Error('Solo los usuarios premium pueden tener más de 2 proyectos activos')
+  // if(!user.premium && user.proyects?.length >= 2) throw new Error('Solo los usuarios premium pueden tener más de 2 proyectos activos')
   const newProyect = new Proyect({name,description,client});
   newProyect.creator = new mongoose.Types.ObjectId(creatorId);
   const savedProyect = await newProyect.save();
