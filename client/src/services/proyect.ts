@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { persist } from 'zustand/middleware';
 
-export type Project = {
+export type Proyect = {
   id?: string;
   name: string;
   description: string;
@@ -14,18 +14,18 @@ export type Project = {
 }
 
 type Actions = {
-  setProyects: (projects: Array<Project>) => void;
+  setProyects: (proyects: Array<Proyect>) => void;
   clearProyects: () => void;
 }
 
 export interface ProjectStore {
-  proyects: Array<Project>;
+  proyects: Array<Proyect>;
 }
 
 export const useProyectStore = create(
   persist<ProjectStore & Actions>((set) => ({
     proyects: [],
-    setProyects: (proyects: Array<Project>) => set((state) => ({ ...state, proyects })),
+    setProyects: (proyects: Array<Proyect>) => set((state) => ({ ...state, proyects })),
     clearProyects: () => set((state)=>({...state,proyects:[]}))
   }), {
     name: 'project',

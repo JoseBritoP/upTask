@@ -4,9 +4,9 @@ export type Proyect = {
   id:string
   name:string
   description:string
-  limitDate:string
+  limitDate?:string
   client:string
-  collaborators:string | User[]
-  tasks: string | Task[]
-  creator:string
+  collaborators?:string | User[]
+  tasks?: string | Task[]
+  creator?:string
 }
