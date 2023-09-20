@@ -9,3 +9,7 @@ export const createProyect = async (name:string,description:string,client:string
 export const getProyects = async () => {
   return axios.get('/proyect');
 };
+
+export const getProyectDetail = async (id:string) => {
+  return axios.get(`proyect/task/${id}`)
+}

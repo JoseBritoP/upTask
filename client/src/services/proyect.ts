@@ -15,7 +15,8 @@ export type Proyect = {
 
 type Actions = {
   setProyects: (proyects: Array<Proyect>) => void;
-  clearDetail:(proyect:Proyect) =>void;
+  setDetail:(proyect:Proyect) =>void;
+  clearDetail:() =>void;
   clearProyects: () => void;
 }
 
@@ -29,6 +30,7 @@ export const useProyectStore = create(
     proyects: [],
     proyectDetail:{} as Proyect,
     setProyects: (proyects: Array<Proyect>) => set((state) => ({ ...state, proyects })),
+    setDetail:(proyect:Proyect) =>set ((state)=>({...state,proyectDetail:proyect})),
     clearProyects: () => set((state)=>({...state,proyects:[]})),
     clearDetail: () => set((state)=>({...state,proyectDetail:{} as Proyect}))
   }), {
