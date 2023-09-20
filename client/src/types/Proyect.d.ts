@@ -1,7 +1,7 @@
 import { User } from './User'
 import { Task } from './Task'
 export type Proyect = {
-  id:string
+  _id?:string
   name:string
   description:string
   limitDate?:string

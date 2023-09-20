@@ -1,7 +1,7 @@
 import { Routes,Route } from 'react-router-dom'
 import {AuthLayout,RoutePrivates} from './layouts/'
 import Navbar from './components/Navbar'
-import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount,Error,Proyects,Landing,AdminDashboard,NewProyect } from './pages'
+import { Login,Register,ForgetPassword,NewPassword, ConfirmedAccount,Error,Proyects,Landing,AdminDashboard,NewProyect,ProyectDetail } from './pages'
 function App() {
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -18,6 +18,7 @@ function App() {
       <Route path='/proyects' element={<RoutePrivates/>}>
         <Route index element={<Proyects/>}/>
         <Route path="create-proyect" element={<NewProyect/>}/>
+        <Route path="detail/:id" element={<ProyectDetail/>}/>
       </Route>
       <Route path='/admin' element={<RoutePrivates/>}>
         <Route index element={<AdminDashboard/>}/>

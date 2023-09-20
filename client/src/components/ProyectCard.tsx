@@ -13,12 +13,12 @@ const ProyectCard = (proyect:Proyect) => {
 
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-900 flex w-full justify-between items-center flex-row border-2 gap-1 py-4 px-6  rounded-lg text-black dark:text-gray-50 border-black dark:border-gray-400" key={proyect.id}>
+    <div className="bg-gray-50 dark:bg-slate-900 flex w-full justify-between items-center flex-row border-2 gap-1 py-4 px-6  rounded-lg text-black dark:text-gray-50 border-black dark:border-gray-400" key={proyect._id}>
       <p className="p1 md:p-3 text-xl font-bold text-sky-600">Nombre: <span className="text-black dark:text-gray-100 font-semibold">{proyect.name}</span></p>
       <p className="p1 md:p-3 text-xl font-bold text-sky-600">Cliente: <span className="text-black dark:text-gray-100 font-semibold">{proyect.client}</span> </p>
       {/* <button className='hidden md:block uppercase'>Ver proyecto</button> */}
-      <Link to="create-proyect" className="hidden md:block bg-sky-600 p-1 md:p-3 text-white uppercase font-bold text-center rounded-lg">Ver Proyecto</Link>
-      <Link to="create-proyect" className="bg-sky-600 p-1 md:hidden text-white uppercase font-bold block text-center rounded-lg">{value}</Link>
+      <Link to={`detail/${proyect._id}`} className="hidden md:block bg-sky-600 p-1 md:p-3 text-white uppercase font-bold text-center rounded-lg">Ver Proyecto</Link>
+      <Link to={`detail/${proyect._id}`} className="bg-sky-600 p-1 md:hidden text-white uppercase font-bold block text-center rounded-lg">{value}</Link>
       {/* <button className='md:hidden'>{value}</button> */}
     </div>
   );

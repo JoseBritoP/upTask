@@ -10,6 +10,7 @@ import Proyects from "./Proyects";
 import Landing from "./Landing";
 import AdminDashboard from "./AdminDashboard";
 import NewProyect from "./NewProyect";
+import ProyectDetail from "./ProyectDetail";
 
 export {
   Login,
@@ -21,5 +22,6 @@ export {
   Proyects,
   Landing,
   AdminDashboard,
-  NewProyect
+  NewProyect,
+  ProyectDetail
 }

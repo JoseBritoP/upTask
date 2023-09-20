@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist } from 'zustand/middleware';
 
 export type Proyect = {
-  id?: string;
+  _id?: string;
   name: string;
   description: string;
   client: string;

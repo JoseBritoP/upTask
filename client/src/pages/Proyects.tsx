@@ -6,6 +6,7 @@ const Proyects = () => {
 
   const { message, error } = useProyects();
   const { proyects } = useProyectStore();
+  
   return(
     <>
       <h1 className="md:self-start text-xl font-black md:text-2xl pt-1 pb-4 text-sky-600 dark:text-white">Proyectos</h1>
@@ -18,11 +19,11 @@ const Proyects = () => {
           <div className="flex flex-col flex-wrap md:flex-row justify-center gap-2 p-4 w-full ">
             {proyects && proyects.map((proyect) => (
               <ProyectCard
-               key={proyect.id} 
+               key={proyect._id} 
                name={proyect.name}
                description={proyect.description} 
                limitDate={proyect.limitDate} 
-               client={proyect.client} id={proyect.id || ""} collaborators={proyect.collaborators} tasks={proyect.tasks} 
+               client={proyect.client} _id={proyect._id || ""} collaborators={proyect.collaborators} tasks={proyect.tasks} 
               />
             ))}
           </div>
