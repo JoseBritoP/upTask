@@ -15,19 +15,23 @@ export type Proyect = {
 
 type Actions = {
   setProyects: (proyects: Array<Proyect>) => void;
+  clearDetail:(proyect:Proyect) =>void;
   clearProyects: () => void;
 }
 
-export interface ProjectStore {
+export interface ProyectStore {
   proyects: Array<Proyect>;
+  proyectDetail:Proyect
 }
 
 export const useProyectStore = create(
-  persist<ProjectStore & Actions>((set) => ({
+  persist<ProyectStore & Actions>((set) => ({
     proyects: [],
+    proyectDetail:{} as Proyect,
     setProyects: (proyects: Array<Proyect>) => set((state) => ({ ...state, proyects })),
-    clearProyects: () => set((state)=>({...state,proyects:[]}))
+    clearProyects: () => set((state)=>({...state,proyects:[]})),
+    clearDetail: () => set((state)=>({...state,proyectDetail:{} as Proyect}))
   }), {
-    name: 'project',
+    name: 'proyect',
   })
 )
