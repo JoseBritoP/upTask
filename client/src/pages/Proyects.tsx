@@ -9,13 +9,13 @@ const Proyects = () => {
   return(
     <>
       <h1 className="md:self-start text-xl font-black md:text-2xl pt-1 pb-4 text-sky-600 dark:text-white">Proyectos</h1>
-      <div className="flex flex-row flex-wrap justify-center items-center">
+      <div className="flex w-full flex-row justify-center items-center">
         { error ? (
           <AlertComponent error={error} message={message}/>
         ) : proyects.length === 0 ? (
           <p className="text-black dark:text-gray-100 font-semibold text-lg md:text-xl"> No tienes proyectos creados</p>
         ) : (
-          <div className="flex flex-wrap justify-center gap-10 p-4 w-full">
+          <div className="flex flex-col flex-wrap md:flex-row justify-center gap-2 p-4 w-full ">
             {proyects && proyects.map((proyect) => (
               <ProyectCard
                key={proyect.id} 
