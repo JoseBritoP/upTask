@@ -3,9 +3,6 @@ import useProyectDetail from "../hooks/useProyectDetail"
 import { useProyectStore } from "../services/proyect";
 const ProyectDetail = () => {
 
-  // const { id } = useParams<{id:string}>();
-  // console.log(id)
-
   useProyectDetail();
 
   const { proyectDetail } = useProyectStore();
@@ -39,19 +36,27 @@ const ProyectDetail = () => {
 
 
   return (
-    <div className="dark:bg-slate-900 w-full p-4 md:w-4/5 xl:w-2/3 rounded-lg border-2 dark:border-gray-300 gap-2" key={proyectDetail._id}>
+    <div className="dark:bg-slate-900 w-full p-4 md:w-4/5 xl:w-2/3 rounded-lg border-2 dark:border-gray-300 gap-10 pl-5" key={proyectDetail._id}>
+      {!proyectDetail ? (
+        <>
+          <p>Loading</p>
+        </>
+      ): (
+        <>
       <h1 className="text-2xl font-bold uppercase dark:text-sky-500 pl-0 pt-0 p-3">{proyectDetail.name}</h1>
-      <p className="text-xl dark:text-blue-500">Fecha de entrega: <span className="dark:text-gray-100 text-lg">{proyectDetail.limitDate?.split("T")[0]}</span></p>
-      <p className="text-xl dark:text-blue-500">Cliente: <span className="text-lg dark:text-gray-100">{proyectDetail.client}</span></p>
-      <p className="text-xl dark:text-blue-500">Descripción <br/> <span className="text-lg dark:text-gray-100">{proyectDetail.description}</span></p>
+      <p className="text-xl dark:text-blue-500 mt-5 mb-2">Fecha de entrega: <span className="dark:text-gray-100 text-lg">{proyectDetail.limitDate?.split("T")[0]}</span></p>
+      <p className="text-xl dark:text-blue-500 mb-2">Cliente: <span className="text-lg dark:text-gray-100">{proyectDetail.client}</span></p>
+      <p className="text-xl dark:text-blue-500 mb-2">Descripción <br/> <span className="text-lg dark:text-gray-100">{proyectDetail.description}</span></p>
       {/* Colaboradores */}
-      <div className="flex flex-col gap-2 mt-2">
+      <div className="flex flex-col gap-2 mb-2">
         <h2 className="text-xl dark:text-blue-500">Colaboradores</h2>
         {proyectDetail.collaborators && proyectDetail.collaborators.length === 0 ? (
-          <div className="flex w-full justify-evenly items-center gap-4">
-            <p>Agrega colaboradores</p>
-            <button>{collaboratorIconPlus}</button>
-            <button>{collaboratorIconMinus}</button>
+          <div className="flex w-1/2 justify-start items-center gap-4">
+            <p>Agrega colaboradores {"->"}</p>
+              <button>{collaboratorIconPlus}</button>
+            {/* <div className="flex">
+              <button>{collaboratorIconMinus}</button>
+            </div> */}
           </div>
         ) : (
           <>
@@ -63,10 +68,10 @@ const ProyectDetail = () => {
       <div className="flex flex-col gap-2 mt-2">
         <h2 className="text-xl dark:text-blue-500">Tareas</h2>
           {proyectDetail.tasks && proyectDetail.tasks.length === 0 ? (
-            <div className="flex justify-evenly items-center gap-2">
-              <p>Añade tareas</p>
+            <div className="flex justify-start items-center gap-2">
+              <p>Añade tareas {"->"}</p>
               <button>{taskPlus}</button>
-              <button>{taskMinus}</button>
+                {/* <button>{taskMinus}</button> */}
             </div>
           ) : (
             <div className="flex flex-col gap-2">
@@ -85,6 +90,8 @@ const ProyectDetail = () => {
             </div>
           )}
       </div>
+      </>
+    )}
     </div>
   )
 }

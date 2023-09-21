@@ -13,9 +13,13 @@ const ProyectCard = (proyect:Proyect) => {
 
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-900 flex w-full justify-between items-center flex-row border-2 gap-1 py-4 px-6  rounded-lg text-black dark:text-gray-50 border-black dark:border-gray-400" key={proyect._id}>
-      <p className="p1 md:p-3 text-xl font-bold text-sky-600">Nombre: <span className="text-black dark:text-gray-100 font-semibold">{proyect.name}</span></p>
-      <p className="p1 md:p-3 text-xl font-bold text-sky-600">Cliente: <span className="text-black dark:text-gray-100 font-semibold">{proyect.client}</span> </p>
+    <div className="bg-gray-50 dark:bg-slate-900 flex w-full xl:max-w-2xl justify-between items-center flex-row border-2 gap-1 py-4 px-6  rounded-lg text-black dark:text-gray-50 border-black dark:border-gray-400" key={proyect._id}>
+      <p className="hidden md:block p1 md:p-3 text-xl font-bold text-sky-600">Nombre: <span className="text-black dark:text-gray-100 font-semibold">{proyect.name}</span></p>
+      <p className="hidden md:block p1 md:p-3 text-xl font-bold text-sky-600">Cliente: <span className="text-black dark:text-gray-100 font-semibold">{proyect.client}</span> </p>
+      <div className='flex justify-around gap-5  items-center md:hidden'>
+        <p className="md:hidden p1 md:p-3 text-xl font-bold text-sky-600 uppercase">{proyect.name}</p>
+        <p className="text-black dark:text-gray-400 font-semibold text-base uppercase">{proyect.client}</p>
+      </div>
       {/* <button className='hidden md:block uppercase'>Ver proyecto</button> */}
       <Link to={`detail/${proyect._id}`} className="hidden md:block bg-sky-600 p-1 md:p-3 text-white uppercase font-bold text-center rounded-lg">Ver Proyecto</Link>
       <Link to={`detail/${proyect._id}`} className="bg-sky-600 p-1 md:hidden text-white uppercase font-bold block text-center rounded-lg">{value}</Link>
